@@ -14,7 +14,7 @@ all:$(NAME)
 $(NAME):$(OBJ)
 	$(C++) $(CFLAGS) -o $@ $^
 
-%.o: %.c
+%.o: %.cpp
 	$(C++) $(CFLAGS) -c $< -o $@
 
 clean:
