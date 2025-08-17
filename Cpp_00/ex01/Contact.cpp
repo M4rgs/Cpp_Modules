@@ -14,15 +14,39 @@ Contact::Contact(std::string first_name, std::string last_name, std::string nick
     this->secret = secret;
 }
 
+std::string Contact::getFirstName()
+{
+    return this->first_name;
+}
+
+std::string Contact::getLastName()
+{
+    return this->last_name;
+}
+
+std::string Contact::getNickName()
+{
+    return this->nick_name;
+}
+
+std::string Contact::getPhone()
+{
+    return this->phone;
+}
+
+std::string Contact::getSecret()
+{
+    return this->secret;
+}
 
 Contact::~Contact(void)
 {
     return ;
 }
 
-int Contact::isnull(Contact ctn)
+int Contact::isnull()
 {
-    if (ctn.first_name.empty())
+    if (first_name.empty())
         return (1);
     return (0);
 }

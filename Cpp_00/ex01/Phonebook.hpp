@@ -3,15 +3,16 @@
 
 #include "Contact.hpp"
 
-class Phonebook{
+class Phonebook {
     private:
-        Contact contact[9];
+        Contact contacts[8];
     public:
         Phonebook();
-        void    display(Phonebook pb);
-        Phonebook delone(Phonebook pb);
-        int checkpb(Phonebook pb);
         ~Phonebook();
+
+        void display();
+        void delone(int index);
+        int checkpb();
 };
 
 #endif

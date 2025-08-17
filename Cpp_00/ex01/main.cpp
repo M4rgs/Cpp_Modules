@@ -11,17 +11,16 @@ int main()
     {
         std::cout << "INPUT : ";
         std::getline(std::cin, input);
-        if (input == "EXIT")
-            break;
-        else if (input == "ADD")
+        if (input == "ADD")
         {
-            i = pb.checkpb(pb);
-            if (i < 7)
-            {
-                
-                break;
-            }
+            
         }
+        else if (input == "SEARCH")
+        {
+            pb.display();
+        }
+        else if (input == "EXIT")
+            break;
     }
     return 0;
 }
