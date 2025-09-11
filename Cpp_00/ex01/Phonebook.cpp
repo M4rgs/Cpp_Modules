@@ -67,3 +67,12 @@ void Phonebook::display()
             std::cout << std::endl;
     }
 }
+
+void Phonebook::search_UID()
+{
+    std::cout << " ___________________________________________ " << std::endl;
+    std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
+    std::cout << "|----------|----------|----------|----------|" << std::endl;
+
+    std::cout << " ------------------------------------------- " << std::endl;
+}
