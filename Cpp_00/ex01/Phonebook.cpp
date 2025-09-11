@@ -2,6 +2,7 @@
 
 Phonebook::Phonebook(void)
 {
+    this->index = 0;
     return ;
 }
 Phonebook::~Phonebook(void)
@@ -9,29 +10,60 @@ Phonebook::~Phonebook(void)
     return ;
 }
 
-int Phonebook::checkpb()
+void Phonebook::add()
 {
-    int i = 0;
-    while (i < 8)
+    std::string str;
+
+        str = "";
+    while (!std::cin.eof() && str == "")
     {
-        if (contacts[i].isnull())
-            break ;
-        i++;
+        std::cout << "Enter First Name : ";
+        if (std::getline(std::cin, str) && str != "")
+            this->contacts[this->index % 8].set_FirstName(str);
     }
-    return (i);
+    str = "";
+    while (!std::cin.eof() && str == "")
+    {
+        std::cout << "Enter Last Name : ";
+        if (std::getline(std::cin, str) && str != "")
+            this->contacts[this->index % 8].set_LastName(str);
+    }
+    str = "";
+    while (!std::cin.eof() && str == "")
+    {
+        std::cout << "Enter NickName : ";
+        if (std::getline(std::cin, str) && str != "")
+            this->contacts[this->index % 8].set_NickName(str);
+    }
+    str = "";
+    while (!std::cin.eof() && str == "")
+    {
+        std::cout << "Enter Phone Number : ";
+        if (std::getline(std::cin, str) && str != "")
+            this->contacts[this->index % 8].set_Phone(str);
+    }
+    str = "";
+    while (!std::cin.eof() && str == "")
+    {
+        std::cout << "Enter Phone Secret : ";
+        if (std::getline(std::cin, str) && str != "")
+        {
+            this->contacts[this->index % 8].set_Secret(str);
+            std::cout << "Succeflly Added To Contact" << std::endl;
+        }
+    }
+    this->index++;
 }
+
 void Phonebook::display()
 {
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < this->index; i++)
     {
-        if (!contacts[i].isnull())
-        {
-            std::cout << contacts[i].getFirstName() << "  ";
-            std::cout << contacts[i].getLastName() << "  ";
-            std::cout << contacts[i].getNickName() << " ";
-            std::cout << contacts[i].getPhone() << " ";
-            std::cout << contacts[i].getSecret() << " ";
+            std::cout << contacts[i].getFirstName() << " index of : " << this->index << std::endl;
+            std::cout << contacts[i].getLastName() << " index of : " << this->index << std::endl;
+            std::cout << contacts[i].getNickName() << " index of : " << this->index << std::endl;
+            std::cout << contacts[i].getPhone() << " index of : " << this->index << std::endl;
+            std::cout << contacts[i].getSecret() << " index of : " << this->index << std::endl;
             std::cout << std::endl;
-        }
     }
 }

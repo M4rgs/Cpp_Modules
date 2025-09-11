@@ -7,20 +7,14 @@ int main()
     int i;
 
     i = 0;
-    while (1)
+    while (input != "EXIT")
     {
-        std::cout << "INPUT : ";
+        std::cout << "Enter A Command > ";
         std::getline(std::cin, input);
         if (input == "ADD")
-        {
-            
-        }
+            pb.add();
         else if (input == "SEARCH")
-        {
             pb.display();
-        }
-        else if (input == "EXIT")
-            break;
     }
-    return 0;
+    return (0);
 }

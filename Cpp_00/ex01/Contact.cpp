@@ -5,14 +5,6 @@ Contact::Contact(void)
     return ;
 }
 
-Contact::Contact(std::string first_name, std::string last_name, std::string nick_name, std::string phone, std::string secret)
-{
-    this->first_name = first_name;
-    this->last_name = last_name;
-    this->nick_name = nick_name;
-    this->phone = phone;
-    this->secret = secret;
-}
 
 std::string Contact::getFirstName()
 {
@@ -39,15 +31,28 @@ std::string Contact::getSecret()
     return this->secret;
 }
 
+void    Contact::set_FirstName(std::string s)
+{
+    this->first_name = s;
+}
+void    Contact::set_LastName(std::string s)
+{
+    this->last_name = s;
+}
+void    Contact::set_NickName(std::string s)
+{
+    this->nick_name = s;
+}
+void    Contact::set_Phone(std::string s)
+{
+    this->phone = s;
+}
+void    Contact::set_Secret(std::string s)
+{
+    this->secret = s;
+}
+
 Contact::~Contact(void)
 {
     return ;
 }
-
-int Contact::isnull()
-{
-    if (first_name.empty())
-        return (1);
-    return (0);
-}
-

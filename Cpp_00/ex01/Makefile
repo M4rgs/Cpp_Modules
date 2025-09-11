@@ -1,6 +1,6 @@
 NAME = PhoneBook
 
-C++ = c++
+C++ = g++
 
 CFLAGS = -Wall #-Wextra -Werror
 
