@@ -14,7 +14,7 @@ void Phonebook::add()
 {
     std::string str;
 
-        str = "";
+    str = "";
     while (!std::cin.eof() && str == "")
     {
         std::cout << "Enter First Name : ";
@@ -55,24 +55,45 @@ void Phonebook::add()
     this->index++;
 }
 
+
 void Phonebook::display()
 {
+    search_UID();
     for (int i = 0; i < this->index; i++)
     {
-            std::cout << contacts[i].getFirstName() << " index of : " << this->index << std::endl;
-            std::cout << contacts[i].getLastName() << " index of : " << this->index << std::endl;
-            std::cout << contacts[i].getNickName() << " index of : " << this->index << std::endl;
-            std::cout << contacts[i].getPhone() << " index of : " << this->index << std::endl;
-            std::cout << contacts[i].getSecret() << " index of : " << this->index << std::endl;
+            std::cout << "|";
+            add_space(1);
+            std::cout << i;
+            std::cout << "|";
+            add_space(contacts[i].getFirstName().length());
+            std::cout << contacts[i].getFirstName();
+            std::cout << "|";
+            add_space(contacts[i].getLastName().length());
+            std::cout << contacts[i].getLastName();
+            std::cout << "|";
+            add_space(contacts[i].getNickName().length());
+            std::cout << contacts[i].getNickName();
+            std::cout << "|";
             std::cout << std::endl;
     }
 }
 
+void Phonebook::add_space(int len)
+{
+    while (len < 10)
+    {
+        std::cout << " ";
+        len++;
+    }
+    
+}
 void Phonebook::search_UID()
 {
+    int i;
+
+    i = 0;
     std::cout << " ___________________________________________ " << std::endl;
     std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
     std::cout << "|----------|----------|----------|----------|" << std::endl;
 
-    std::cout << " ------------------------------------------- " << std::endl;
 }

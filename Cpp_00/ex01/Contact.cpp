@@ -5,7 +5,6 @@ Contact::Contact(void)
     return ;
 }
 
-
 std::string Contact::getFirstName()
 {
     return this->first_name;

@@ -16,6 +16,7 @@ class Phonebook {
         void    display();
 
         void    search_UID();
+        void    add_space(int len);
         Contact	get_contact(int index);
 };
 

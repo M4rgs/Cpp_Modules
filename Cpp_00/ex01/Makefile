@@ -1,20 +1,21 @@
 NAME = PhoneBook
 
-C++ = g++
+C++ = c++
 
-CFLAGS = -Wall #-Wextra -Werror
+CFLAGS = -Wall -std=c++98
 
 SRC = Contact.cpp main.cpp Phonebook.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
+HEADERS = Phonebook.hpp Contact.hpp
 
 all:$(NAME)
 
 $(NAME):$(OBJ)
 	$(C++) $(CFLAGS) -o $@ $^
 
-%.o: %.cpp
+%.o: %.cpp $(HEADERS)
 	$(C++) $(CFLAGS) -c $< -o $@
 
 clean:
