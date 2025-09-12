@@ -1,13 +1,13 @@
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 
 int main()
 {
-    Phonebook pb;
+    PhoneBook pb;
     std::string input;
 
     while (input != "EXIT")
     {
-        std::cout << "Enter A Command > ";
+        std::cout << "Enter a command > ";
         std::getline(std::cin, input);
         if (input == "ADD")
             pb.add();

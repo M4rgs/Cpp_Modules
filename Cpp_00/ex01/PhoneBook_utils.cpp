@@ -1,6 +1,6 @@
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 
-void Phonebook::add_space(int len)
+void    PhoneBook::addSpace(int len)
 {
     while (len < 10)
     {
@@ -9,7 +9,7 @@ void Phonebook::add_space(int len)
     }
 }
 
-std::string Phonebook::new_str(std::string s)
+std::string PhoneBook::newString(std::string s)
 {
     std::string new_str;
     if (s.length() > 10)
@@ -17,7 +17,7 @@ std::string Phonebook::new_str(std::string s)
     return (s);
 }
 
-void    Phonebook::print_special_index(int in)
+void    PhoneBook::printSpecialIndex(int in)
 {
     std::cout << "First Name : " << contacts[in].getFirstName() << std::endl;
     std::cout << "Last Name : " << contacts[in].getLastName() << std::endl;
@@ -26,3 +26,22 @@ void    Phonebook::print_special_index(int in)
     std::cout << "Darkest Secret : " << contacts[in].getSecret() << std::endl;
 }
 
+int    PhoneBook::isPrintableString(std::string s)
+{
+    for(size_t i = 0; i < s.size(); i++)
+    {
+        if (!isprint((char)s[i]))
+            return (0);
+    }
+    return (1);
+}
+
+int     PhoneBook::isDigitNumber(std::string s)
+{
+    for(size_t i = 0; i < s.size(); i++)
+    {
+        if (!isdigit((char)s[i]))
+            return (0);
+    }
+    return (1);
+}

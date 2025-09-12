@@ -4,11 +4,11 @@ C++ = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = Contact.cpp main.cpp Phonebook.cpp Phonebook_utils.cpp
+SRC = Contact.cpp main.cpp PhoneBook.cpp PhoneBook_utils.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-HEADERS = Phonebook.hpp Contact.hpp
+HEADERS = PhoneBook.hpp Contact.hpp
 
 all:$(NAME)
 
