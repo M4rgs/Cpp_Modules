@@ -5,9 +5,9 @@
 
 class Contact {
     private:
-        std::string first_name;
-        std::string last_name;
-        std::string nick_name;
+        std::string firstName;
+        std::string lastName;
+        std::string nickName;
         std::string phone;
         std::string secret;
     public:
@@ -20,11 +20,11 @@ class Contact {
         std::string getPhone();
         std::string getSecret();
 
-        void        set_FirstName(std::string s);
-        void        set_LastName(std::string s);
-        void        set_NickName(std::string s);
-        void        set_Phone(std::string s);
-        void        set_Secret(std::string s);
+        void        setFirstName(std::string s);
+        void        setLastName(std::string s);
+        void        setNickName(std::string s);
+        void        setPhone(std::string s);
+        void        setSecret(std::string s);
 };
 
 #endif

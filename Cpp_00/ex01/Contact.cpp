@@ -7,17 +7,17 @@ Contact::Contact(void)
 
 std::string Contact::getFirstName()
 {
-    return this->first_name;
+    return this->firstName;
 }
 
 std::string Contact::getLastName()
 {
-    return this->last_name;
+    return this->lastName;
 }
 
 std::string Contact::getNickName()
 {
-    return this->nick_name;
+    return this->nickName;
 }
 
 std::string Contact::getPhone()
@@ -30,23 +30,23 @@ std::string Contact::getSecret()
     return this->secret;
 }
 
-void    Contact::set_FirstName(std::string s)
+void    Contact::setFirstName(std::string s)
 {
-    this->first_name = s;
+    this->firstName = s;
 }
-void    Contact::set_LastName(std::string s)
+void    Contact::setLastName(std::string s)
 {
-    this->last_name = s;
+    this->lastName = s;
 }
-void    Contact::set_NickName(std::string s)
+void    Contact::setNickName(std::string s)
 {
-    this->nick_name = s;
+    this->nickName = s;
 }
-void    Contact::set_Phone(std::string s)
+void    Contact::setPhone(std::string s)
 {
     this->phone = s;
 }
-void    Contact::set_Secret(std::string s)
+void    Contact::setSecret(std::string s)
 {
     this->secret = s;
 }

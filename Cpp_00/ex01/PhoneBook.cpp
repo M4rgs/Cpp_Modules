@@ -14,36 +14,36 @@ void PhoneBook::add()
     {
         std::cout << "Enter First Name : ";
         if (std::getline(std::cin, str) && str != "" && isPrintableString(str))
-            this->contacts[this->index % 8].set_FirstName(str);
+            this->contacts[this->index % 8].setFirstName(str);
     }
     str = "";
     while (!std::cin.eof() && (str == "" || !isPrintableString(str)))
     {
         std::cout << "Enter Last Name : ";
         if (std::getline(std::cin, str) && str != "" && isPrintableString(str))
-            this->contacts[this->index % 8].set_LastName(str);
+            this->contacts[this->index % 8].setLastName(str);
     }
     str = "";
     while (!std::cin.eof() && (str == "" || !isPrintableString(str)))
     {
         std::cout << "Enter NickName : ";
         if (std::getline(std::cin, str) && str != "" && isPrintableString(str))
-            this->contacts[this->index % 8].set_NickName(str);
+            this->contacts[this->index % 8].setNickName(str);
     }
     str = "";
     while (!std::cin.eof() && (str == "" || !isPrintableString(str)))
     {
         std::cout << "Enter Phone Number : ";
         if (std::getline(std::cin, str) && str != "" && isPrintableString(str))
-            this->contacts[this->index % 8].set_Phone(str);
+            this->contacts[this->index % 8].setPhone(str);
     }
     str = "";
     while (!std::cin.eof() && (str == "" || !isPrintableString(str)))
     {
-        std::cout << "Enter Phone Secret : ";
+        std::cout << "Enter Darkest Secret : ";
         if (std::getline(std::cin, str) && str != "" && isPrintableString(str))
         {
-            this->contacts[this->index % 8].set_Secret(str);
+            this->contacts[this->index % 8].setSecret(str);
             std::cout << "Successfully Added To Contact" << std::endl;
         }
     }
@@ -66,7 +66,7 @@ void PhoneBook::display()
     {
         std::cout << "|";
         addSpace(1);
-        std::cout << i;
+        std::cout << i + 1;
         std::cout << "|";
         addSpace(newString(contacts[i].getFirstName()).length());
         std::cout << newString(contacts[i % 8].getFirstName());
@@ -78,12 +78,13 @@ void PhoneBook::display()
         std::cout << newString(contacts[i % 8].getNickName());
         std::cout << "|" << std::endl;
     }
+    std::cout << " ------------------------------------------- " << std::endl;
     std::cout << "Enter Index : ";
     std::getline(std::cin, input);
-    if (!isDigitNumber(input) || atoi(input.c_str()) >= this->index)
+    if (!isDigitNumber(input) || (atoi(input.c_str()) > this->index || atoi(input.c_str()) > 8 || atoi(input.c_str()) < 1) || input.size() > 1)
         std::cout << "Error : Invalid Index" << std::endl;
     else
-        printSpecialIndex(atoi(input.c_str()));
+        printSpecialIndex(atoi(input.c_str()) - 1);
 }
 
 PhoneBook::~PhoneBook(void)
