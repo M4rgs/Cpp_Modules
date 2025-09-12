@@ -49,24 +49,18 @@ void Phonebook::add()
         if (std::getline(std::cin, str) && str != "")
         {
             this->contacts[this->index % 8].set_Secret(str);
-            std::cout << "Succeflly Added To Contact" << std::endl;
+            std::cout << "Successfully Added To Contact" << std::endl;
         }
     }
     this->index++;
 }
 
-void Phonebook::add_space(int len)
-{
-    while (len < 10)
-    {
-        std::cout << " ";
-        len++;
-    }
-    
-}
+
+
 void Phonebook::display()
 {
-    int limit;
+    int         limit;
+    std::string input;
 
     std::cout << " ___________________________________________ " << std::endl;
     std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
@@ -81,14 +75,21 @@ void Phonebook::display()
         add_space(1);
         std::cout << i;
         std::cout << "|";
-        add_space(contacts[i].getFirstName().length());
-        std::cout << contacts[i % 8].getFirstName();
+        add_space(new_str(contacts[i].getFirstName()).length());
+        std::cout << new_str(contacts[i % 8].getFirstName());
         std::cout << "|";
-        add_space(contacts[i].getLastName().length());
-        std::cout << contacts[i % 8].getLastName();
+        add_space(new_str(contacts[i].getLastName()).length());
+        std::cout << new_str(contacts[i % 8].getLastName());
         std::cout << "|";
-        add_space(contacts[i].getNickName().length());
-        std::cout << contacts[i % 8].getNickName();
+        add_space(new_str(contacts[i].getNickName()).length());
+        std::cout << new_str(contacts[i % 8].getNickName());
         std::cout << "|" << std::endl;
     }
+    std::cout << "Enter Index : ";
+    std::getline(std::cin, input);
+    if (atoi(input.c_str()) >= this->index || atoi(input.c_str()) < 0)
+        std::cout << "Error hh\n";
+    else
+        print_special_index(atoi(input.c_str()));
 }
+

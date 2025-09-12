@@ -2,6 +2,7 @@
 #define PHONEBOOK_HPP
 
 #include "Contact.hpp"
+#include <cstdlib>
 
 class Phonebook {
     private:
@@ -17,7 +18,8 @@ class Phonebook {
 
         void    search_UID();
         void    add_space(int len);
-        Contact	get_contact(int index);
+        void    print_special_index(int in);
+        std::string new_str(std::string s);
 };
 
 #endif
