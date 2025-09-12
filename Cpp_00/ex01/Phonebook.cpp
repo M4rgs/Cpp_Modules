@@ -55,8 +55,6 @@ void Phonebook::add()
     this->index++;
 }
 
-
-
 void Phonebook::display()
 {
     int         limit;
