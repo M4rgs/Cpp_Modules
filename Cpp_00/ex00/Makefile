@@ -1,4 +1,4 @@
-NAME = Megaphone
+NAME = megaphone
 
 C++ = c++
 
@@ -7,7 +7,6 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = megaphone.cpp
 
 OBJ = $(SRC:.cpp=.o)
-
 
 all:$(NAME)
 
@@ -24,5 +23,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re

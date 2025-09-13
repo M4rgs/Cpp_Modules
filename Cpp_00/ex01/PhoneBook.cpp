@@ -65,26 +65,29 @@ void PhoneBook::display()
     for (int i = 0; i < limit; i++)
     {
         std::cout << "|";
-        addSpace(1);
-        std::cout << i + 1;
+        std::cout << std::setw(10) << i + 1;
         std::cout << "|";
-        addSpace(newString(contacts[i].getFirstName()).length());
-        std::cout << newString(contacts[i % 8].getFirstName());
+        std::cout << std::setw(10) << newString(contacts[i % 8].getFirstName());
         std::cout << "|";
-        addSpace(newString(contacts[i].getLastName()).length());
-        std::cout << newString(contacts[i % 8].getLastName());
+        std::cout << std::setw(10) << newString(contacts[i % 8].getLastName());
         std::cout << "|";
-        addSpace(newString(contacts[i].getNickName()).length());
-        std::cout << newString(contacts[i % 8].getNickName());
+        std::cout << std::setw(10) << newString(contacts[i % 8].getNickName());
         std::cout << "|" << std::endl;
     }
     std::cout << " ------------------------------------------- " << std::endl;
-    std::cout << "Enter Index : ";
-    std::getline(std::cin, input);
-    if (!isDigitNumber(input) || (atoi(input.c_str()) > this->index || atoi(input.c_str()) > 8 || atoi(input.c_str()) < 1) || input.size() > 1)
-        std::cout << "Error : Invalid Index" << std::endl;
-    else
-        printSpecialIndex(atoi(input.c_str()) - 1);
+
+    input = "";
+    while (!std::cin.eof() && isValidString(input))
+    {
+        std::cout << "Enter Index : ";
+        std::getline(std::cin, input);
+
+        if (std::cin.eof()) 
+            return;
+        if (input == "" || isValidString(input))
+            std::cout << "Error : Invalid Index" << std::endl;
+    }
+    printSpecialIndex(atoi(input.c_str()) - 1);
 }
 
 PhoneBook::~PhoneBook(void)

@@ -1,14 +1,5 @@
 #include "PhoneBook.hpp"
 
-void    PhoneBook::addSpace(int len)
-{
-    while (len < 10)
-    {
-        std::cout << " ";
-        len++;
-    }
-}
-
 std::string PhoneBook::newString(std::string s)
 {
     std::string new_str;
@@ -44,4 +35,16 @@ int     PhoneBook::isDigitNumber(std::string s)
             return (0);
     }
     return (1);
+}
+int     PhoneBook::isValidString(std::string input)
+{
+    if (input == ""
+    ||!isPrintableString(input)
+    || !isDigitNumber(input)
+    || atoi(input.c_str()) < 1
+    || atoi(input.c_str()) > 8
+    || atoi(input.c_str()) > this->index
+    || input.size() > 1)
+        return (1);
+    return (0);
 }

@@ -3,8 +3,7 @@
 
 #include "Contact.hpp"
 #include <cstdlib>
-#include <string>
-#include <cctype>
+#include <iomanip>
 
 class PhoneBook {
     private:
@@ -17,10 +16,10 @@ class PhoneBook {
         void        add();
         void        display();
 
-        void        addSpace(int len);
         void        printSpecialIndex(int in);
         int         isPrintableString(std::string s);
         int         isDigitNumber(std::string s);
+        int         isValidString(std::string input);
         std::string newString(std::string s);
 };
 
