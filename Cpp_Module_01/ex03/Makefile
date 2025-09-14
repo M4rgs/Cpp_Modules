@@ -1,14 +1,14 @@
-NAME = ZombieHorde
+NAME = Violence
 
 C++ = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98 
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Zombie.cpp zombieHorde.cpp
+SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-HEADERS = Zombie.hpp
+HEADERS = Weapon.hpp HumanA.hpp HumanB.hpp
 
 all:$(NAME)
 
