@@ -41,10 +41,10 @@ int     PhoneBook::isValidString(std::string input)
     if (input == ""
     ||!isPrintableString(input)
     || !isDigitNumber(input)
-    || atoi(input.c_str()) < 1
-    || atoi(input.c_str()) > 8
-    || atoi(input.c_str()) > this->index
-    || input.size() > 1)
+    || input[0] < '1'
+    || input[0] > '8'
+    || input.size() > 1
+    || contacts[input[0] - 1 - '0'].getFirstName().size() == 0)
         return (1);
     return (0);
 }

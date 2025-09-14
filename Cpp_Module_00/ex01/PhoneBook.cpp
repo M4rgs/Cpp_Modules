@@ -87,7 +87,7 @@ void PhoneBook::display()
         if (input == "" || isValidString(input))
             std::cout << "Error : Invalid Index" << std::endl;
     }
-    printSpecialIndex(atoi(input.c_str()) - 1);
+    printSpecialIndex(input[0] - 1 - '0');
 }
 
 PhoneBook::~PhoneBook(void)
