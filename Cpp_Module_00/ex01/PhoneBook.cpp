@@ -13,35 +13,35 @@ void PhoneBook::add()
     while (!std::cin.eof() && (str == "" || !isPrintableString(str)))
     {
         std::cout << "Enter First Name : ";
-        if (std::getline(std::cin, str) && str != "" && isPrintableString(str))
+        if (std::getline(std::cin, str) && str != "")
             this->contacts[this->index % 8].setFirstName(str);
     }
     str = "";
     while (!std::cin.eof() && (str == "" || !isPrintableString(str)))
     {
         std::cout << "Enter Last Name : ";
-        if (std::getline(std::cin, str) && str != "" && isPrintableString(str))
+        if (std::getline(std::cin, str) && str != "")
             this->contacts[this->index % 8].setLastName(str);
     }
     str = "";
     while (!std::cin.eof() && (str == "" || !isPrintableString(str)))
     {
         std::cout << "Enter NickName : ";
-        if (std::getline(std::cin, str) && str != "" && isPrintableString(str))
+        if (std::getline(std::cin, str) && str != "")
             this->contacts[this->index % 8].setNickName(str);
     }
     str = "";
-    while (!std::cin.eof() && (str == "" || !isPrintableString(str)))
+    while (!std::cin.eof() && (str == "" || !isPrintableString(str) || isValidPhoneNumber(str)))
     {
         std::cout << "Enter Phone Number : ";
-        if (std::getline(std::cin, str) && str != "" && isPrintableString(str))
+        if (std::getline(std::cin, str) && str != "")
             this->contacts[this->index % 8].setPhone(str);
     }
     str = "";
     while (!std::cin.eof() && (str == "" || !isPrintableString(str)))
     {
         std::cout << "Enter Darkest Secret : ";
-        if (std::getline(std::cin, str) && str != "" && isPrintableString(str))
+        if (std::getline(std::cin, str) && str != "")
         {
             this->contacts[this->index % 8].setSecret(str);
             std::cout << "Successfully Added To Contact" << std::endl;

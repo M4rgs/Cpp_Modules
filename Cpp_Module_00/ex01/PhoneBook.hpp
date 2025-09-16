@@ -17,10 +17,11 @@ class PhoneBook {
         void        display();
 
         void        printSpecialIndex(int in);
-        int         isPrintableString(std::string s);
-        int         isDigitNumber(std::string s);
+        int         isPrintableString(std::string string);
+        int         isDigitNumber(std::string string);
         int         isValidString(std::string input);
-        std::string newString(std::string s);
+        int	        isValidPhoneNumber(std::string input);
+        std::string newString(std::string string);
 };
 
 #endif

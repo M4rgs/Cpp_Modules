@@ -1,11 +1,11 @@
 #include "PhoneBook.hpp"
 
-std::string PhoneBook::newString(std::string s)
+std::string PhoneBook::newString(std::string string)
 {
     std::string new_str;
-    if (s.length() > 10)
-        return (new_str = s.substr(0, 9) + ".");
-    return (s);
+    if (string.length() > 10)
+        return (new_str = string.substr(0, 9) + ".");
+    return (string);
 }
 
 void    PhoneBook::printSpecialIndex(int in)
@@ -17,21 +17,21 @@ void    PhoneBook::printSpecialIndex(int in)
     std::cout << "Darkest Secret : " << contacts[in].getSecret() << std::endl;
 }
 
-int    PhoneBook::isPrintableString(std::string s)
+int    PhoneBook::isPrintableString(std::string string)
 {
-    for(size_t i = 0; i < s.size(); i++)
+    for(size_t i = 0; i < string.size(); i++)
     {
-        if (!isprint((char)s[i]))
+        if (!isprint((char)string[i]))
             return (0);
     }
     return (1);
 }
 
-int     PhoneBook::isDigitNumber(std::string s)
+int     PhoneBook::isDigitNumber(std::string string)
 {
-    for(size_t i = 0; i < s.size(); i++)
+    for(size_t i = 0; i < string.size(); i++)
     {
-        if (!isdigit((char)s[i]))
+        if (!isdigit((char)string[i]))
             return (0);
     }
     return (1);
@@ -46,5 +46,18 @@ int     PhoneBook::isValidString(std::string input)
     || input.size() > 1
     || contacts[input[0] - 1 - '0'].getFirstName().size() == 0)
         return (1);
+    return (0);
+}
+
+int     PhoneBook::isValidPhoneNumber(std::string input)
+{
+	for (int i = 0; input[i]; i++)
+	{
+		if (!isdigit(input[i]))
+		{
+			std::cout << "The NumberPhone Must Contains Only Digits " << std::endl;
+			return (1);
+		}
+	}
     return (0);
 }
