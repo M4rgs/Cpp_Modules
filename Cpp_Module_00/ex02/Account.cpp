@@ -129,3 +129,4 @@ Account::~Account()
               << ";amount:" << this->_amount
               << ";closed" << std::endl;
 }
+
