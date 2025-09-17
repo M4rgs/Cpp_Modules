@@ -1,14 +1,14 @@
-NAME = Sed
+NAME = Bank
 
 C++ = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp
+SRC = tests.cpp Account.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-HEADERS = 
+HEADERS = Account.hpp
 
 all:$(NAME)
 
