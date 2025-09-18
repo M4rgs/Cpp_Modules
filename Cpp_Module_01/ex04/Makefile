@@ -1,4 +1,4 @@
-NAME = Sed
+NAME = SearchAndReplace
 
 C++ = c++
 
