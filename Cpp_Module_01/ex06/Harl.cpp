@@ -4,17 +4,6 @@ Harl::Harl()
 {
     return ;
 }
-Harl::Harl(std::string level)
-{
-    if (level == "DEBUG")
-        this->intLevel = 1;
-    if (level == "INFO")
-        this->intLevel = 2;
-    if (level == "WARNING")
-        this->intLevel = 3;
-    if (level == "ERROR")
-        this->intLevel = 4;
-}
 
 void    Harl::debug()
 {
@@ -40,17 +29,29 @@ void    Harl::error()
     std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl ;
 }
 
-void    Harl::complain()
+void    Harl::complain(std::string level)
 {
+    std::string lvls[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int i;
+
+    for(i = 0; i < 4; i++)
+    {
+        if (lvls[i] == level)
+        {
+            this->intLevel = i;
+            break;
+        }
+    }
+
     switch (this->intLevel)
     {
-        case 1:
+        case 0:
             debug();
-        case 2:
+        case 1:
             info();
-        case 3:
+        case 2:
             warning();
-        case 4:
+        case 3:
         {
             error();
             break; 
@@ -59,7 +60,6 @@ void    Harl::complain()
 
     }
 }
-
 
 Harl::~Harl()
 {
