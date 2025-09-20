@@ -31,10 +31,10 @@ void    Harl::error()
 
 void    Harl::complain(std::string level)
 {
-    std::string lvls[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    std::string lvls[5] = {"NOTHING", "DEBUG", "INFO", "WARNING", "ERROR"};
     int i;
 
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < 5; i++)
     {
         if (lvls[i] == level)
         {
@@ -45,13 +45,13 @@ void    Harl::complain(std::string level)
 
     switch (this->intLevel)
     {
-        case 0:
-            debug();
         case 1:
-            info();
+            debug();
         case 2:
-            warning();
+            info();
         case 3:
+            warning();
+        case 4:
         {
             error();
             break; 

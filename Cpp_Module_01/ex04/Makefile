@@ -1,4 +1,4 @@
-NAME = SearchAndReplace
+NAME = Sed
 
 C++ = c++
 
@@ -8,14 +8,12 @@ SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-HEADERS = 
-
 all:$(NAME)
 
 $(NAME):$(OBJ)
 	$(C++) $(CFLAGS) -o $@ $^
 
-%.o: %.cpp $(HEADERS)
+%.o: %.cpp
 	$(C++) $(CFLAGS) -c $< -o $@
 
 clean:

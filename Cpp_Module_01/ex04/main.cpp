@@ -31,7 +31,7 @@ int main(int ac, char **av)
     std::string fileName = av[1];
     std::string ori = av[2];
     std::string  rep = av[3];
-    if (fileName.empty() || ori.empty() || rep.empty())
+    if (fileName.empty() || ori.empty() )
     {
         std::cout << "Empty arguments." << std::endl;
         return (1);
@@ -45,6 +45,7 @@ int main(int ac, char **av)
     std::ofstream outputFile((fileName + ".replace").c_str());
     if (!outputFile.is_open())
     {
+        inputFile.close();
         std::cout << "Can't open output file." << std::endl;
         return (1);
     }

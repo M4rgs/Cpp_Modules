@@ -2,6 +2,7 @@
 
 HumanB::HumanB(std::string _name)
 {
+    _weapon = nullptr;
     this->name = _name;
     this->isArmed = false;
 }
