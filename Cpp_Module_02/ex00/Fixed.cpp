@@ -18,12 +18,10 @@ Fixed &Fixed::operator=(const Fixed& other)
 {
     std::cout << "Copy assigmenet operator called" << std::endl;
     this->numValue = other.numValue;
-
-    
     return (*this);
 }
 
-int Fixed::getRawBits()
+int Fixed::getRawBits() const
 {
     std::cout << "getRawBits member function called" << std::endl;
     return this->numValue;
