@@ -11,13 +11,10 @@ class Fixed{
         Fixed();
         Fixed(const Fixed& other);
         Fixed& operator=(const Fixed& other);
-
-        int getRawBits() const;
-        void setRawBits(int const raw);
-
         ~Fixed();
 
-
+        int     getRawBits() const;
+        void    setRawBits(int const raw);
 };
 
 #endif

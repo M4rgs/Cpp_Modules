@@ -14,7 +14,7 @@ Fixed::Fixed(const Fixed& other)
     *this = other;
 }
 
-Fixed::Fixed(const int intValue) 
+Fixed::Fixed(const int intValue)
 {
     std::cout << "Int constructor called" << std::endl;
     this->numValue = intValue << this->fractionalBits;
@@ -50,7 +50,7 @@ int Fixed::toInt(void) const
 
 float Fixed::toFloat(void) const
 {
-    return (float)this->numValue / (1 << this->fractionalBits);
+    return ((float)this->numValue / (float)(1 << this->fractionalBits));
 }
 
 Fixed::~Fixed()
@@ -62,37 +62,3 @@ std::ostream& operator<<(std::ostream& out, const Fixed& fixed) {
     out << fixed.toFloat();
     return out;
 }
-
-
-/*
-Fixed number: 10.75
-        _fractionalBits: 8
-        _internal integer (_fixedPointValue): 2752
-
-Binary (16 bits):
-
-        Integer | Fraction
-        00001010 | 11000000
-          10        0.75
-
-Conversion:
-        - toFloat() -> 2752 / 256 = 10.75
-        - toInt()   -> 2752 >> 8  = 10
-
-
-
-
-Number: -10.743
-    _fractionalBits: 8
-    Step 1: Multiply by 256 -> -2748.608
-
-Step 2: Round -> -2749
-Step 3: Store as int (_fixedPointValue) -> -2749
-
-Binary (16-bit two's complement):
-    11110101.01001101  (-2749)
-
-    toFloat() -> -2749 / 256 ≈ -10.7461
-    toInt()   -> -2749 >> 8 ≈ -11
-
-*/
