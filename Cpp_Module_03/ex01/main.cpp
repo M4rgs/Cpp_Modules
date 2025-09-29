@@ -1,10 +1,14 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
-    ClapTrap clap("taha");
+    ScavTrap scav("taha");
 
-    clap.attack("mza7a");
-    clap.beRepaired(10);
-    clap.attack("mza7a");
+    scav.attack("mza7a");
+    scav.beRepaired(10);
+    scav.attack("mza7a");
+
+    scav.guardGate();
+
 }

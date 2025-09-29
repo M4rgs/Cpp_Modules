@@ -8,7 +8,7 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string _name)
 {
-    std::cout << "Paramitrized constructor called !" << std::endl;
+    std::cout << "ClapTrap Paramitrized constructor called !" << std::endl;
     this->name = _name;
     this->hitPoints = 10;
     this->energyPoints = 10;
@@ -39,6 +39,41 @@ void    ClapTrap::attack(const std::string& target)
     else
         std::cout << "No enough hit point for ClapTrap to attack !" << std::endl;
     
+}
+
+void    ClapTrap::setHit(unsigned int i)
+{
+    this->hitPoints = i;
+}
+
+void    ClapTrap::setEner(unsigned int i)
+{
+    this->energyPoints = i;
+}
+
+void    ClapTrap::setDam(unsigned int i)
+{
+    this->attackDamage = i;
+}
+
+unsigned int    ClapTrap::getHit()
+{
+    return (this->hitPoints);
+}
+
+unsigned int    ClapTrap::getEner()
+{
+     return (this->energyPoints);
+}
+
+unsigned int    ClapTrap::getDam()
+{
+     return (this->attackDamage);
+}
+
+std::string    ClapTrap::getName()
+{
+    return (this->name);
 }
 
 ClapTrap::~ClapTrap()
