@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
     std::cout << "ScavTrap Default constructor called !" << std::endl;
 }
@@ -13,22 +13,31 @@ ScavTrap::ScavTrap(std::string _name) : ClapTrap(_name)
     this->setDam(20);
 }
 
-void    ScavTrap::guardGate()
+void ScavTrap::guardGate()
 {
-    std::cout << "ScavTrap is now in Gate keeper mode" << std::endl;
+    std::cout << "ScavTrap " << this->getName() 
+              << " is now in Gate Keeper mode." << std::endl;
 }
 
-void    ScavTrap::attack(const std::string& target)
+void ScavTrap::attack(const std::string& target)
 {
-    if (this->getHit() > 0)
+    if (this->getHit() <= 0)
     {
-        std::cout << "ScavTrap " << this->getName() << " attacks " << target;
-        this->takeDamage(this->getDam());
-        this->setEner(this->getEner() - 1);
+        std::cout << "ScavTrap " << this->getName() 
+                  << " has no hit points left to attack!" << std::endl;
+        return;
     }
-    else
-        std::cout << "No enough hit point for ScavTrap to attack !" << std::endl;
-    
+    if (this->getEner() <= 0)
+    {
+        std::cout << "ScavTrap " << this->getName() 
+                  << " has no energy points left to attack!" << std::endl;
+        return;
+    }
+    std::cout << "ScavTrap " << this->getName() 
+              << " attacks " << target 
+              << ", causing " << this->getDam() << " points of damage!" 
+              << std::endl;
+    this->setEner(this->getEner() - 1);
 }
 
 ScavTrap::~ScavTrap()

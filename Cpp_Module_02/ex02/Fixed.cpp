@@ -4,34 +4,22 @@ const int Fixed::fractionalBits = 8;
 
 Fixed& Fixed::min(Fixed& one, Fixed& two)
 {
-    if (one.getRawBits() < two.getRawBits())
-        return (one);
-    else
-        return (two);
+    return (one.getRawBits() < two.getRawBits() ? one:two);
 }
 
 const Fixed& Fixed::min(const Fixed& one, const Fixed& two)
 {
-    if (one.getRawBits() < two.getRawBits())
-        return (one);
-    else
-        return (two);
+   return (one.getRawBits() < two.getRawBits() ? one:two);
 }
 
 Fixed& Fixed::max(Fixed& one, Fixed& two)
 {
-    if (one.getRawBits() > two.getRawBits())
-        return (one);
-    else
-        return (two);
+    return (one.getRawBits() > two.getRawBits() ? one:two);
 }
 
 const Fixed& Fixed::max(const Fixed& one, const Fixed& two)
 {
-    if (one.getRawBits() > two.getRawBits())
-        return (one);
-    else
-        return (two);
+    return (one.getRawBits() > two.getRawBits() ? one:two);
 }
 
 Fixed::Fixed()

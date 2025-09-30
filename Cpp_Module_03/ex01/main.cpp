@@ -3,15 +3,15 @@
 
 int main()
 {
-    ClapTrap clap("baghdadi");
-    ScavTrap scav("taha");
+    ClapTrap clap("ClapAttacker");
+    ScavTrap scav("ScavAttarcker");
 
-    scav.attack("mza7a");
-    clap.attack("kapitcha");
+    scav.attack("Enemy");
+    clap.attack("Enemy");
     scav.beRepaired(10);
     clap.beRepaired(5);
-    scav.attack("mza7a");
-    clap.attack("kapitcha");
+    scav.attack("Enemy");
+    clap.attack("Enemy");
 
     scav.guardGate();
 

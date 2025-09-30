@@ -9,6 +9,10 @@ int main()
 	const Point	C(-1, 2);
 	const Point	P(0, 2);
 
-    std::cout << "The Point is " << (bsp(A, B, C, P) ? "inside" : "outside") << std::endl;
+    bool isInside = bsp(A, B, C, P);
+    if (isInside)
+        std::cout << "The point is Iside !" << std::endl;
+    else
+        std::cout << "The Point Is Outside" << std::endl;
     return 0;
 }

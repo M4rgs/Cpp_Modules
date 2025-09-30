@@ -1,9 +1,10 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap()
 {
-    std::cout << "FragTrap default contructor called !" << std::endl;
+    std::cout << "FragTrap default constructor called !" << std::endl;
 }
+
 
 FragTrap::FragTrap(std::string _name) : ClapTrap(_name)
 {
@@ -13,23 +14,34 @@ FragTrap::FragTrap(std::string _name) : ClapTrap(_name)
     this->setDam(30);
 }
 
-void    FragTrap::attack(const std::string& target)
+
+void FragTrap::attack(const std::string& target)
 {
-    if (this->getHit() > 0)
+    if (this->getHit() <= 0)
     {
-        std::cout << "FragTrap " << this->getName() << " attacks " << target;
-        this->takeDamage(this->getDam());
-        this->setEner(this->getEner() - 1);
+        std::cout << "FragTrap " << this->getName() 
+                  << " has no hit points left to attack!" << std::endl;
+        return;
     }
-    else
-        std::cout << "No enough hit point for FragTrap to attack !" << std::endl;
-    
+    if (this->getEner() <= 0)
+    {
+        std::cout << "FragTrap " << this->getName() 
+                  << " has no energy points left to attack!" << std::endl;
+        return;
+    }
+    std::cout << "FragTrap " << this->getName() 
+              << " attacks " << target 
+              << ", causing " << this->getDam() << " points of damage!" 
+              << std::endl;
+    this->setEner(this->getEner() - 1);
 }
 
 void FragTrap::highFivesGuys(void)
 {
-    std::cout << "HighFigh !" << std::endl;
+    std::cout << "FragTrap " << this->getName() 
+              << " requests a positive high five !" << std::endl;
 }
+
 
 FragTrap::~FragTrap()
 {

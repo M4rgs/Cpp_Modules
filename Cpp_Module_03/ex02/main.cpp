@@ -4,13 +4,14 @@
 
 int main()
 {
-    ClapTrap clap("baghdadi");
-    ScavTrap scav("taha");
-    FragTrap frag("oussama");
+    ClapTrap clap("ClapAttacker");
+    ScavTrap scav("ScavAttarcker");
+    FragTrap frag("FragAttarcker");
 
-    scav.attack("mza7a");
-    clap.attack("kapitcha");
-    frag.attack("hsna");
+    scav.attack("Enemy");
+    clap.attack("Enemy");
+    frag.attack("Enemy");
 
-
+    scav.guardGate();
+    frag.highFivesGuys();
 }

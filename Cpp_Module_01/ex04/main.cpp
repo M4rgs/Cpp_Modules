@@ -54,7 +54,7 @@ int main(int ac, char **av)
     {
         outputFile << startReplace(line, ori, rep);
         if (!inputFile.eof())
-            outputFile << std::endl;
+            outputFile << '\n';
     }
     inputFile.close();
     outputFile.close();

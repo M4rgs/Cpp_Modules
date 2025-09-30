@@ -2,9 +2,9 @@
 
 int main()
 {
-    ClapTrap clap("taha");
+    ClapTrap clap("atacker");
 
-    clap.attack("mza7a");
+    clap.attack("Enemy");
     clap.beRepaired(10);
-    clap.attack("mza7a");
+    clap.attack("Enemy");
 }

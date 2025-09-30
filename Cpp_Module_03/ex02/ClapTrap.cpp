@@ -2,13 +2,12 @@
 
 ClapTrap::ClapTrap()
 {
-    std::cout << "ClapTrap Default constructor called !" << std::endl;
-
+    std::cout << "ClapTrap Default constructor called!" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string _name)
 {
-    std::cout << "ClapTrap Paramitrized constructor called !" << std::endl;
+    std::cout << "ClapTrap Parametrized constructor called!" << std::endl;
     this->name = _name;
     this->hitPoints = 10;
     this->energyPoints = 10;
@@ -17,28 +16,52 @@ ClapTrap::ClapTrap(std::string _name)
 
 void    ClapTrap::beRepaired(unsigned int amount)
 {
-    this->hitPoints += amount;
-    this->energyPoints--;
-    std::cout << "ClapTrap got repaired ! Current hit points : " << this->hitPoints << std::endl;
+    if (hitPoints <= 0)
+    {
+        std::cout << "ClapTrap " << name << " cannot be repaired because it is destroyed!" << std::endl;
+        return;
+    }
+    if (energyPoints <= 0)
+    {
+        std::cout << "ClapTrap " << name << " has no energy points left to repair!" << std::endl;
+        return;
+    }
+    hitPoints += amount;
+    energyPoints--;
+    std::cout << "ClapTrap " << name << " repaired itself by " << amount
+              << "! Current HP: " << hitPoints << std::endl;
 }
 
 void    ClapTrap::takeDamage(unsigned int amount)
 {
-    this->hitPoints -= amount;
-    std::cout << ", causing " << amount << " points of damage !"<< std::endl;
+    if (hitPoints <= 0)
+    {
+        std::cout << "ClapTrap " << name << " is already destroyed!" << std::endl;
+        return;
+    }
+    if (amount >= hitPoints)
+        hitPoints = 0;
+    else
+        hitPoints -= amount;
+    std::cout << "ClapTrap " << name << " took " << amount 
+              << " damage! Remaining HP: " << hitPoints << std::endl;
 }
 
-void    ClapTrap::attack(const std::string& target)
+void ClapTrap::attack(const std::string& target)
 {
-    if (this->hitPoints > 0)
+    if (hitPoints <= 0)
     {
-        std::cout << "ClapTrap " << this->name << " attacks " << target;
-        this->takeDamage(this->attackDamage);
-        this->energyPoints--;
+        std::cout << "ClapTrap " << name << " has no hit points left to attack!" << std::endl;
+        return;
     }
-    else
-        std::cout << "No enough hit point for ClapTrap to attack !" << std::endl;
-    
+    if (energyPoints <= 0)
+    {
+        std::cout << "ClapTrap " << name << " has no energy points left to attack!" << std::endl;
+        return;
+    }
+    std::cout << "ClapTrap " << name << " attacks " << target
+              << ", causing " << attackDamage << " points of damage!" << std::endl;
+    energyPoints--;
 }
 
 void    ClapTrap::setHit(unsigned int i)
