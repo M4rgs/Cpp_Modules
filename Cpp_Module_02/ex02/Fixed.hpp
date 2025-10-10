@@ -23,12 +23,12 @@ class Fixed{
 
 
         Fixed& operator=(const Fixed& other);
-        bool   operator>(Fixed other);
-        bool   operator>=(Fixed other);
-        bool   operator<(Fixed other);
-        bool   operator<=(Fixed other);
-        bool   operator==(Fixed other);
-        bool   operator!=(Fixed other);
+        bool   operator>(Fixed other) const;
+        bool   operator>=(Fixed other) const;
+        bool   operator<(Fixed other) const;
+        bool   operator<=(Fixed other) const;
+        bool   operator==(Fixed other) const;
+        bool   operator!=(Fixed other) const;
         
 
         Fixed  operator+(Fixed other) const;

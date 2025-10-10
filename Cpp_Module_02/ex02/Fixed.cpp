@@ -68,32 +68,32 @@ float Fixed::toFloat(void) const
     return (float)this->numValue / (1 << this->fractionalBits);
 }
 
-bool Fixed::operator>(Fixed other)
+bool Fixed::operator>(Fixed other) const
 {
     return (this->toFloat() > other.toFloat());
 }
 
-bool Fixed::operator<(Fixed other)
+bool Fixed::operator<(Fixed other) const
 {
     return (this->toFloat() < other.toFloat());
 }
 
-bool Fixed::operator>=(Fixed other)
+bool Fixed::operator>=(Fixed other) const
 {
     return (this->toFloat() >= other.toFloat());
 }
 
-bool Fixed::operator<=(Fixed other)
+bool Fixed::operator<=(Fixed other) const
 {
    return (this->toFloat() <= other.toFloat());
 }
 
-bool Fixed::operator==(Fixed other)
+bool Fixed::operator==(Fixed other) const
 {
     return (this->toFloat() == other.toFloat());
 }
 
-bool Fixed::operator!=(Fixed other)
+bool Fixed::operator!=(Fixed other) const
 {
     return (this->toFloat() != other.toFloat());
 }

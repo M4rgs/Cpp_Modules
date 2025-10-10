@@ -1,34 +1,33 @@
 #include "Point.hpp"
 
+Fixed calculeArea(Point const &A, Point const &B, Point const &C)
+{
+    Fixed rzlt;
+
+    Fixed part1 = A.x_getter() * (B.y_getter() - C.y_getter());
+    Fixed part2 = B.x_getter() * (C.y_getter() - A.y_getter());
+    Fixed part3 = C.x_getter() * (A.y_getter() - B.y_getter());
+
+    rzlt = (part1 + part2 + part3) * Fixed(0.5f);
+
+    if (rzlt < Fixed(0))
+        rzlt = Fixed(-1) * rzlt;
+
+    return rzlt;
+}
+
 bool bsp( Point const a, Point const b, Point const c, Point const point)
 {
-    Fixed mainArea = (a.x_getter() * (b.y_getter() - c.y_getter()) +
-                       b.x_getter() * (c.y_getter() - a.y_getter()) +
-                       c.x_getter() * (a.y_getter() - b.y_getter())) * Fixed(0.5f);
-    if (mainArea < Fixed(0))
-        mainArea = mainArea * Fixed(-1);
-    Fixed area1 = (point.x_getter() * (b.y_getter() - c.y_getter()) +
-                   b.x_getter() * (c.y_getter() - point.y_getter()) +
-                   c.x_getter() * (point.y_getter() - b.y_getter())) * Fixed(0.5f);
-    if (area1 < Fixed(0))
-        area1 = area1 * Fixed(-1);
-    Fixed area2 = (a.x_getter() * (point.y_getter() - c.y_getter()) +
-                   point.x_getter() * (c.y_getter() - a.y_getter()) +
-                   c.x_getter() * (a.y_getter() - point.y_getter())) * Fixed(0.5f);
-    if (area2 < Fixed(0))
-        area2 = area2 * Fixed(-1);
-    Fixed area3 = (a.x_getter() * (b.y_getter() - point.y_getter()) +
-                   b.x_getter() * (point.y_getter() - a.y_getter()) +
-                   point.x_getter() * (a.y_getter() - b.y_getter())) * Fixed(0.5f);
-    if (area3 < Fixed(0))
-        area3 = area3 * Fixed(-1);
+    Fixed main(calculeArea(a, b, c));
+    Fixed area_1(calculeArea(point, b, c));
+    Fixed area_2(calculeArea(a, point, c));
+    Fixed area_3(calculeArea(a, b, point));
 
-    if (area1 == Fixed(0) || area2 == Fixed(0) || area3 == Fixed(0))
+    if (area_1 == Fixed(0) || area_2 == Fixed(0) || area_3 == Fixed(0))
         return false;
-    Fixed epsilon(0.01f);
-    Fixed sum = area1 + area2 + area3;
-    Fixed diff = mainArea - sum;
-    if (diff < Fixed(0))
-        diff = diff * Fixed(-1);
-    return (diff < epsilon);
+    if (main == area_1 + area_2 + area_3)
+        return true;
+    return (false);
 }
+
+
