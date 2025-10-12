@@ -2,42 +2,52 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-    std::cout << "ScavTrap Default constructor called !" << std::endl;
+    std::cout << "ScavTrap Default constructor called!" << std::endl;
+    hitPoints = 100;
+    energyPoints = 50;
+    attackDamage = 20;
 }
 
 ScavTrap::ScavTrap(std::string _name) : ClapTrap(_name)
 {
-    std::cout << "ScavTrap Paramitrized constructor called !" << std::endl;
-    this->setHit(100);
-    this->setEner(50);
-    this->setDam(20);
+    std::cout << "ScavTrap Parameterized constructor called!" << std::endl;
+    hitPoints = 100;
+    energyPoints = 50;
+    attackDamage = 20;
+}
+
+ScavTrap::ScavTrap(const ScavTrap &st) : ClapTrap(st)
+{
+    std::cout << "ScavTrap Copy constructor called!" << std::endl;
+    *this = st;
+}
+
+ScavTrap	&ScavTrap::operator=(const ScavTrap &st)
+{
+	std::cout << "ScavTrap Assignement operator called!" << std::endl;
+	this->name = st.name;
+	this->hitPoints = st.hitPoints;
+	this->energyPoints = st.energyPoints;
+	this->attackDamage = st.attackDamage;
+	return (*this);
 }
 
 void ScavTrap::guardGate()
 {
-    std::cout << "ScavTrap " << this->getName() 
+    std::cout << "ScavTrap " << name 
               << " is now in Gate Keeper mode." << std::endl;
 }
 
 void ScavTrap::attack(const std::string& target)
 {
-    if (this->getHit() <= 0)
+    if (energyPoints <= 0 || hitPoints <= 0) 
     {
-        std::cout << "ScavTrap " << this->getName() 
-                  << " has no hit points left to attack!" << std::endl;
+        std::cout << "ScavTrap " << name << " cannot attack!" << std::endl;
         return;
     }
-    if (this->getEner() <= 0)
-    {
-        std::cout << "ScavTrap " << this->getName() 
-                  << " has no energy points left to attack!" << std::endl;
-        return;
-    }
-    std::cout << "ScavTrap " << this->getName() 
-              << " attacks " << target 
-              << ", causing " << this->getDam() << " points of damage!" 
-              << std::endl;
-    this->setEner(this->getEner() - 1);
+    std::cout << "ScavTrap " << name << " attacks " << target 
+              << ", causing " << attackDamage << " points of damage!" << std::endl;
+    energyPoints--;
 }
 
 ScavTrap::~ScavTrap()

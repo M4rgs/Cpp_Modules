@@ -3,15 +3,35 @@
 ClapTrap::ClapTrap()
 {
     std::cout << "ClapTrap Default constructor called!" << std::endl;
+    this->name = "Default";
+    this->hitPoints = 10;
+    this->energyPoints = 10;
+    this->attackDamage = 0;
 }
 
 ClapTrap::ClapTrap(std::string _name)
 {
-    std::cout << "ClapTrap Parametrized constructor called!" << std::endl;
+    std::cout << "ClapTrap Parameterized constructor called!" << std::endl;
     this->name = _name;
     this->hitPoints = 10;
     this->energyPoints = 10;
     this->attackDamage = 0;
+}
+
+ClapTrap::ClapTrap(const ClapTrap &ct)
+{
+	std::cout << "ClapTrap copy constructor called!" << std::endl;
+	*this = ct;
+}
+
+ClapTrap	&ClapTrap::operator=(const ClapTrap &ct)
+{
+	std::cout << "ClapTrap Assignement operator called!" << std::endl;
+	this->name = ct.name;
+	this->hitPoints = ct.hitPoints;
+	this->energyPoints = ct.energyPoints;
+	this->attackDamage = ct.attackDamage;
+	return (*this);
 }
 
 void    ClapTrap::beRepaired(unsigned int amount)
@@ -28,8 +48,7 @@ void    ClapTrap::beRepaired(unsigned int amount)
     }
     hitPoints += amount;
     energyPoints--;
-    std::cout << "ClapTrap " << name << " repaired itself by " << amount
-              << "! Current HP: " << hitPoints << std::endl;
+    std::cout << "ClapTrap " << name << " repaired himself by " << amount << std::endl;
 }
 
 void    ClapTrap::takeDamage(unsigned int amount)
@@ -44,19 +63,14 @@ void    ClapTrap::takeDamage(unsigned int amount)
     else
         hitPoints -= amount;
     std::cout << "ClapTrap " << name << " took " << amount 
-              << " damage! Remaining HP: " << hitPoints << std::endl;
+              << " damage!" << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target)
 {
-    if (hitPoints <= 0)
+    if (hitPoints <= 0 || energyPoints <= 0)
     {
-        std::cout << "ClapTrap " << name << " has no hit points left to attack" << std::endl;
-        return;
-    }
-    if (energyPoints <= 0)
-    {
-        std::cout << "ClapTrap " << name << " has no energy points left to attack" << std::endl;
+        std::cout << "ClapTrap " << name << " cannot attack!" << std::endl;
         return;
     }
     std::cout << "ClapTrap " << name << " attacks " << target
