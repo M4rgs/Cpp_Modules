@@ -14,9 +14,27 @@ DiamondTrap::DiamondTrap(std::string _name)
 {
     std::cout << "DiamondTrap parameterized constructor called!" << std::endl;
 	name = _name;
+	ClapTrap::name = _name + "_clap_name";
     hitPoints = FragTrap::hitPoints;
     energyPoints = ScavTrap::energyPoints;
     attackDamage = FragTrap::attackDamage;
+}
+
+DiamondTrap::DiamondTrap(const DiamondTrap &_copy)
+{
+	std::cout << "DiamondTrap copy constructor is called!" << std::endl;
+	*this = _copy;
+}
+
+DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &dt)
+{
+	std::cout << "DiamondTrap assignement operator is called!" << std::endl;
+	this->name = dt.name;
+	this->ClapTrap::name = dt.ClapTrap::name;
+	this->hitPoints = dt.hitPoints;
+	this->energyPoints = dt.energyPoints;
+	this->attackDamage = dt.attackDamage;
+	return (*this);
 }
 
 void DiamondTrap::attack(const std::string& target)
@@ -26,7 +44,8 @@ void DiamondTrap::attack(const std::string& target)
 
 void DiamondTrap::whoAmI()
 {
-	std::cout << ClapTrap::name << " and " << name << std::endl;
+	std::cout << "ClapTrap name :" << ClapTrap::name << std::endl;
+	std::cout << "DiamondTrap name :" << name << std::endl;
 }
 
 DiamondTrap::~DiamondTrap()

@@ -4,16 +4,23 @@
 
 int main()
 {
-    ScavTrap hh;
-    ClapTrap clap("ClapAttacker");
-    ScavTrap scav("ScavAttarcker");
-    FragTrap frag("FragAttarcker");
+   	std::cout << "\n===== TEST 1: ClapTrap =====\n";
+	ClapTrap c("Clappy");
+	c.attack("Target A");
+	c.takeDamage(5);
+	c.beRepaired(3);
 
-    scav.attack("Enemy");
-    hh.attack("Enemy");
-    clap.attack("Enemy");
-    frag.attack("Enemy");
+	std::cout << "\n===== TEST 2: ScavTrap =====\n";
+	ScavTrap s("Scavvy");
+	s.attack("Target B");
+	s.takeDamage(30);
+	s.beRepaired(15);
+	s.guardGate();
 
-    scav.guardGate();
-    frag.highFivesGuys();
+	std::cout << "\n===== TEST 3: FragTrap =====\n";
+	FragTrap f("Fraggy");
+	f.attack("Target C");
+	f.takeDamage(50);
+	f.beRepaired(25);
+	f.highFivesGuys();
 }

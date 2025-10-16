@@ -2,9 +2,10 @@
 
 int main()
 {
-    ClapTrap clap("atacker");
+    std::cout << "\n===== TEST 1: ClapTrap =====\n";
+	ClapTrap c("Clappy");
+	c.attack("Target A");
+	c.takeDamage(5);
+	c.beRepaired(3);
 
-    clap.attack("Enemy");
-    clap.beRepaired(10);
-    clap.attack("Enemy");
 }
