@@ -22,14 +22,12 @@ FragTrap::FragTrap(const FragTrap &ft) : ClapTrap(ft)
 	*this = ft;
 }
 
-FragTrap	&FragTrap::operator=(const FragTrap &ft)
+FragTrap	&FragTrap::operator=(const FragTrap &st)
 {
 	std::cout << "FragTrap Assignement operator called!" << std::endl;
-	this->name = ft.name;
-	this->hitPoints = ft.hitPoints;
-	this->energyPoints = ft.energyPoints;
-	this->attackDamage = ft.attackDamage;
-	return (*this);
+    ClapTrap::operator=(st);
+    return (*this);
+
 }
 
 void FragTrap::attack(const std::string& target)

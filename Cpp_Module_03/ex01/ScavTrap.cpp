@@ -25,11 +25,9 @@ ScavTrap::ScavTrap(const ScavTrap &st) : ClapTrap(st)
 ScavTrap	&ScavTrap::operator=(const ScavTrap &st)
 {
 	std::cout << "ScavTrap Assignement operator called!" << std::endl;
-	this->name = st.name;
-	this->hitPoints = st.hitPoints;
-	this->energyPoints = st.energyPoints;
-	this->attackDamage = st.attackDamage;
-	return (*this);
+    ClapTrap::operator=(st);
+    return (*this);
+
 }
 
 void ScavTrap::guardGate()

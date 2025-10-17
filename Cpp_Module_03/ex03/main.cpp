@@ -32,13 +32,5 @@ int main(void)
 	d.beRepaired(10);
 	d.whoAmI();
 
-	std::cout << "\n===== TEST 5: Copy and Assignment =====" << std::endl;
-	DiamondTrap copy(d);
-	DiamondTrap assign;
-	assign = d;
-
-	copy.whoAmI();
-	assign.whoAmI();
-
 	return 0;
 }

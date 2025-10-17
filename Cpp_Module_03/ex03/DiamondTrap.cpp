@@ -1,40 +1,39 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap()
+DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), FragTrap(), ScavTrap()
 {
-	this->name = "Default";
-	ClapTrap::name = "Default_clap_name";
-	std::cout << "DiamondTrap Default constructor is called!" << std::endl;;
-	this->hitPoints = FragTrap::hitPoints;
-	this->energyPoints = ScavTrap::energyPoints;
-	this->attackDamage = FragTrap::attackDamage;
+    std::cout << "DiamondTrap default constructor called!" << std::endl;
+    this->name = "Default";
+    this->hitPoints = FragTrap::hitPoints;
+    this->energyPoints = ScavTrap::energyPoints;
+    this->attackDamage = FragTrap::attackDamage;
 }
 
-DiamondTrap::DiamondTrap(std::string _name) 
+DiamondTrap::DiamondTrap(std::string _name) : ClapTrap(_name + "_clap_name"), FragTrap(_name), ScavTrap(_name)
 {
     std::cout << "DiamondTrap parameterized constructor called!" << std::endl;
-	name = _name;
-	ClapTrap::name = _name + "_clap_name";
-    hitPoints = FragTrap::hitPoints;
-    energyPoints = ScavTrap::energyPoints;
-    attackDamage = FragTrap::attackDamage;
+    this->name = _name;
+    this->hitPoints = FragTrap::hitPoints;
+    this->energyPoints = ScavTrap::energyPoints;
+    this->attackDamage = FragTrap::attackDamage;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &_copy)
+DiamondTrap::DiamondTrap(const DiamondTrap &_copy) : FragTrap(_copy), ScavTrap(_copy)
 {
-	std::cout << "DiamondTrap copy constructor is called!" << std::endl;
-	*this = _copy;
+    std::cout << "DiamondTrap copy constructor called!" << std::endl;
+    this->name = _copy.name;
 }
 
-DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &dt)
+
+DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &st)
 {
-	std::cout << "DiamondTrap assignement operator is called!" << std::endl;
-	this->name = dt.name;
-	this->ClapTrap::name = dt.ClapTrap::name;
-	this->hitPoints = dt.hitPoints;
-	this->energyPoints = dt.energyPoints;
-	this->attackDamage = dt.attackDamage;
-	return (*this);
+	std::cout << "DiamondTrap Assignement operator called!" << std::endl;
+	if (this != &st)
+	{
+		ClapTrap::operator=(st);
+		this->name = st.name; 
+	}
+    return (*this);
 }
 
 void DiamondTrap::attack(const std::string& target)
@@ -44,8 +43,7 @@ void DiamondTrap::attack(const std::string& target)
 
 void DiamondTrap::whoAmI()
 {
-	std::cout << "ClapTrap name :" << ClapTrap::name << std::endl;
-	std::cout << "DiamondTrap name :" << name << std::endl;
+	std::cout << "ClapTrap name :" << ClapTrap::name << ", DiamondTrap name : " << name << std::endl;
 }
 
 DiamondTrap::~DiamondTrap()
