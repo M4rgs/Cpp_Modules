@@ -2,11 +2,12 @@
 #define CHARACTER_HPP
 
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
 
 class Character : public ICharacter
 {
     private :
-        AMateria *invetory[3];
+        AMateria *inventory[4];
     public :
         Character(std::string name);
         Character(const Character &other);

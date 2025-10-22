@@ -1,14 +1,13 @@
 #include "Ice.hpp"
 
-Ice::Ice()
+Ice::Ice() : AMateria("ice")
 {
     std::cout << "ice default constructor is called!" << std::endl;
-    this->type = "ice";
 }
 
-Ice::Ice(const Ice &I) : AMateria()
+Ice::Ice(const Ice &other) : AMateria(other)
 {
-    *this = I;
+    *this = other;
 }
 
 Ice &Ice::operator=(const Ice &other)
@@ -35,5 +34,5 @@ std::string Ice::getType() const
 
 Ice::~Ice()
 {
-    
+    std::cout << "Ice destructor called!" << std::endl;
 }

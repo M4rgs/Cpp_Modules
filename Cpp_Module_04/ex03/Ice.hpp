@@ -4,14 +4,15 @@
 #include "AMateria.hpp"
 
 class Ice : public AMateria {
-    Ice();
-    Ice(const Ice& other);
-    Ice &operator=(const Ice &other);
-    ~Ice();
-
-    Ice* clone() const;
-    std::string getType() const;
-    void use(ICharacter& target);
+    public :
+        Ice();
+        Ice(const Ice& other);
+        Ice &operator=(const Ice &other);
+        ~Ice();
+    
+        Ice* clone() const;
+        std::string getType() const;
+        void use(ICharacter& target);
 };
 
 #endif

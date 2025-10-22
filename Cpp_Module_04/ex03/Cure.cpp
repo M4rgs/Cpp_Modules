@@ -1,14 +1,13 @@
 #include "Cure.hpp"
 
-Cure::Cure()
+Cure::Cure() : AMateria("cure")
 {
     std::cout << "Cure default constructor is called!" << std::endl;
-    this->type = "cure";
 }
 
-Cure::Cure(const Cure &I) : AMateria()
+Cure::Cure(const Cure &other) : AMateria(other)
 {
-    *this = I;
+    *this = other;
 }
 
 Cure &Cure::operator=(const Cure &other)
@@ -35,5 +34,5 @@ std::string Cure::getType() const
 
 Cure::~Cure()
 {
-    
+    std::cout << "Cure destructor called!" << std::endl;
 }

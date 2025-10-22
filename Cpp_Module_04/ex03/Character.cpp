@@ -2,85 +2,74 @@
 
 Character::Character(std::string name)
 {
-    std::cout << "Character parametrized constructor is called\n";
+    std::cout << "Character paramitrized constructor called!" << std::endl;
+    for (int i = 0; i < 4; i++)
+        this->inventory[i] = NULL;
     this->name = name;
-    for (int i = 0;i < 4;i++)
-        this->invetory[i] = NULL;
 }
 
-Character::Character(const Character &C)
+Character::Character(const Character &other)
 {
-    std::cout <<  "Character copy constructor is called\n";
-    for (int i = 0;i < 4;i++)
-        this->invetory[i] = NULL;
-    *this = C;
+    std::cout << "Character copy constructor called!" << std::endl;
+    for(int i = 0; i < 4; i++)
+        this->inventory[i] = NULL;
+    *this = other;
 }
 
-Character &Character::operator=(const Character &C)
+Character &Character::operator=(const Character &other)
 {
     std::cout << "Character copy assignment operator is called\n";
-    if (this == &C)
-        return *this;
-    this->name = C.name;
-    for (int i = 0;i < 4;i++)
+    if (this != &other)
     {
-        if (this->invetory[i] != NULL)
-            delete this->invetory[i];
-        if (C.invetory[i]  != NULL)
-            this->invetory[i] = C.invetory[i]->clone();
+        this->name = other.name;
+        for(int i = 0; i < 4; i++)
+        {
+            if (this->inventory[i] != NULL)
+                delete (this->inventory[i]);
+            if (other.inventory[i] != NULL)
+                this->inventory[i] = other.inventory[i]->clone();
+        }
     }
     return *this;
 }
 
-Character::~Character()
+void Character::equip(AMateria *m)
 {
-    for (int i = 0;i < 4;i++)
+    if (!m)
+        return ;
+   for (int i = 0; i < 4; i++)
     {
-        if (this->invetory[i] != NULL)
-            delete this->invetory[i];
+        if (this->inventory[i] == NULL)
+        {
+            this->inventory[i] = m;
+            return;
+        }
     }
 }
 
+void Character::use(int idx, ICharacter &target)
+{
+    if (idx >= 0 && idx < 4 && this->inventory[idx] != NULL)
+        this->inventory[idx]->use(target);
+}
+
+
+void Character::unequip(int idx)
+{
+    if (idx >= 0 && idx < 4 && this->inventory[idx] != NULL)
+        this->inventory[idx] = NULL;
+}
 std::string const &Character::getName() const
 {
     return this->name;
 }
 
-void    Character::equip(AMateria *m)
+Character::~Character()
 {
-    static int idx;
-    if (!m)
-        return ;
-    if (idx >= 4)
+    std::cout << "Character destructor called!" << std::endl;
+    for (int i = 0; i < 4; i++)
     {
-        for (int i = 0;i < 4;i++)
-        {
-            if (!this->invetory[i])
-            {
-                idx = i;
-                break;
-            }
-        }
-    }
-    if (idx < 4)
-    {
-        this->invetory[idx] = m;
-        idx++;
-    }
-}
-
-void    Character::unequip(int idx)
-{
-    if (idx >= 0 && idx < 4 && this->invetory[idx])
-    {
-        this->invetory[idx] = NULL;
-    }
-}
-
-void    Character::use(int idx, ICharacter &target)
-{
-    if (idx >= 0 && idx < 4 && this->invetory[idx])
-    {
-        this->invetory[idx]->use(target);
+        if (this->inventory[i] != NULL)
+            delete(this->inventory[i]);
     }
 }

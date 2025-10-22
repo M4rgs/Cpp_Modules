@@ -3,27 +3,26 @@
 AMateria::AMateria()
 {
     this->type = "AMateria";
-    std::cout << "AMateria constructor is called\n";
+    std::cout << "AMateria constructor is called" << std::endl;
 }
 
-AMateria::AMateria(std::string const & _type)
+AMateria::AMateria(std::string const &type)
 {
     std::cout << "AMateria parametrized constructor is called\n";
-    this->type = _type;
+    this->type = type;
 }
 
-AMateria::AMateria(const AMateria &A)
+AMateria::AMateria(const AMateria &other)
 {
     std::cout << "AMateria copy constructor is called\n";
-    *this = A;
+    *this = other;
 }
 
-AMateria &AMateria::operator=(const AMateria &A)
+AMateria &AMateria::operator=(const AMateria &other)
 {
     std::cout <<  "AMateria copy assignment operator is called\n";
-    if (this == &A)
-        return *this;
-    this->type = A.type;
+    if (this != &other)
+        this->type = other.type;
     return (*this);
 }
 
