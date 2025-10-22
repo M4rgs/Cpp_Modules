@@ -4,11 +4,11 @@ C++ = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 
 
-SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp
+SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongCat.cpp WrongAnimal.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-HEADERS = Animal.hpp Cat.hpp Dog.hpp
+HEADERS = Animal.hpp Cat.hpp Dog.hpp WrongCat.hpp WrongAnimal.hpp
 
 all:$(NAME)
 

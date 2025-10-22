@@ -2,7 +2,6 @@
 
 Cure::Cure() : AMateria("cure")
 {
-    std::cout << "Cure default constructor is called!" << std::endl;
 }
 
 Cure::Cure(const Cure &other) : AMateria(other)
@@ -34,5 +33,4 @@ std::string Cure::getType() const
 
 Cure::~Cure()
 {
-    std::cout << "Cure destructor called!" << std::endl;
 }

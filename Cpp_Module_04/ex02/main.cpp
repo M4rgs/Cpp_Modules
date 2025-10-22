@@ -1,16 +1,21 @@
-#include "Animal.hpp"
 #include "Dog.hpp"
-#include "Brain.hpp"
 #include "Cat.hpp"
-
+#include <iostream>
 
 int main()
 {
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    j->makeSound();
-    i->makeSound();
-    return 0;
+    std::cout << "--- Creating animals ---" << std::endl;
+    Dog originalDog;
+    Cat originalCat;
+
+    std::cout << "--- Copying animals ---" << std::endl;
+    {
+        Dog copyDog = originalDog;
+        Cat copyCat;
+        copyCat = originalCat;
+
+        std::cout << "--- Scope end: copies will be destroyed ---" << std::endl;
+    }
+
+    std::cout << "-- Originals still alive ---" << std::endl;
 }

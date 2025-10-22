@@ -2,7 +2,6 @@
 
 Ice::Ice() : AMateria("ice")
 {
-    std::cout << "ice default constructor is called!" << std::endl;
 }
 
 Ice::Ice(const Ice &other) : AMateria(other)
@@ -34,5 +33,4 @@ std::string Ice::getType() const
 
 Ice::~Ice()
 {
-    std::cout << "Ice destructor called!" << std::endl;
 }
