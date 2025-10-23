@@ -1,4 +1,4 @@
-NAME = Animal
+NAME = Abstract_Animal
 
 C++ = c++
 
