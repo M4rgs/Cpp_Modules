@@ -29,10 +29,11 @@ int main()
     tmp = src->createMateria("cure");
     alice->equip(tmp);
 
-    tmp = src->createMateria("fire");
+    tmp = src->createMateria("something else");
     alice->equip(tmp);
 
-    ICharacter* bob = new Character("Bob");
+
+    ICharacter* bob = new Character("bob");
 
     alice->use(0, *bob);
     alice->use(1, *bob);

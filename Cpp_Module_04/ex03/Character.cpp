@@ -48,12 +48,10 @@ void Character::equip(AMateria *m)
     {
         if (!this->inventory[i])
         {
-            std::cout << m->getType() << " equipped successfully!" << std::endl;
             this->inventory[i] = m;
             return;
         }
     }
-    std::cout << "No more slots to equip, moving to floor!" << std::endl;
 
     AMateria** newFloor = new AMateria*[this->floorCount + 1];
 

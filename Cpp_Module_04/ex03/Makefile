@@ -1,4 +1,4 @@
-NAME = AMateria
+NAME = Interface
 
 C++ = c++
 

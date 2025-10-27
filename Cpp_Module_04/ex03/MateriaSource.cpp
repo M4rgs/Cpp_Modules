@@ -50,7 +50,6 @@ AMateria    *MateriaSource::createMateria(std::string const & type)
             return (this->slot[i]->clone());
         }
     }
-    std::cout << type << " doesnt exist in the slot" << std::endl;
     return NULL;
 }
 
