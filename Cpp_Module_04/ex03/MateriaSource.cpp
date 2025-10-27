@@ -19,15 +19,14 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
     {
         for(int i = 0; i < 4; i++)
         {
-            if (this->slot[i] != NULL)
+            if (this->slot[i])
                 delete(this->slot[i]);
-            if (other.slot[i] != NULL)
+            if (other.slot[i])
                 this->slot[i] = other.slot[i]->clone();
         }
     }
     return *this;
 }
-
 void MateriaSource::learnMateria(AMateria *m)
 {
     if (!m)
@@ -36,7 +35,7 @@ void MateriaSource::learnMateria(AMateria *m)
     {
         if (this->slot[i] == NULL)
         {
-            this->slot[i] = m;
+            this->slot[i] = m->clone();
             return;
         }
     }
@@ -51,8 +50,8 @@ AMateria    *MateriaSource::createMateria(std::string const & type)
             return (this->slot[i]->clone());
         }
     }
-    std::cout << type << " doesnt exist in the box" << std::endl;
-    return 0;
+    std::cout << type << " doesnt exist in the slot" << std::endl;
+    return NULL;
 }
 
 

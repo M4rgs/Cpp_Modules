@@ -1,7 +1,8 @@
 #include "Ice.hpp"
 
-Ice::Ice() : AMateria("ice")
+Ice::Ice()
 {
+    this->type = "ice";
 }
 
 Ice::Ice(const Ice &other) : AMateria(other)

@@ -1,7 +1,8 @@
 #include "Cure.hpp"
 
-Cure::Cure() : AMateria("cure")
+Cure::Cure()
 {
+    this->type = "cure";
 }
 
 Cure::Cure(const Cure &other) : AMateria(other)

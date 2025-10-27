@@ -1,29 +1,52 @@
-#include "AMateria.hpp"
-#include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
-#include "Cure.hpp"
-#include "Ice.hpp"
 #include "Character.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
+#include "ICharacter.hpp"
+#include "IMateriaSource.hpp"
+#include <iostream>
 
 int main()
 {
     IMateriaSource* src = new MateriaSource();
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
 
-    ICharacter* me = new Character("me");
+    AMateria* iceMateria = new Ice();
+    AMateria* cureMateria = new Cure();
+
+    src->learnMateria(iceMateria);
+    src->learnMateria(cureMateria);
+
+    delete iceMateria;
+    delete cureMateria;
+
+    ICharacter* alice = new Character("Alice");
 
     AMateria* tmp;
+
     tmp = src->createMateria("ice");
-    me->equip(tmp);
+    alice->equip(tmp);
+
     tmp = src->createMateria("cure");
-    me->equip(tmp);
+    alice->equip(tmp);
 
-    ICharacter* bob = new Character("bob");
-    me->use(0, *bob);
-    me->use(1, *bob);
+    tmp = src->createMateria("fire");
+    alice->equip(tmp);
 
-    delete (bob);
-    delete (me);
-    delete (src);
+    ICharacter* bob = new Character("Bob");
+
+    alice->use(0, *bob);
+    alice->use(1, *bob);
+    alice->use(2, *bob); 
+
+    alice->unequip(0);
+    alice->unequip(1);
+
+    alice->use(0, *bob);
+    alice->use(1, *bob);
+
+    delete bob;
+    delete alice;
+    delete src;
+
+    return 0;
 }
