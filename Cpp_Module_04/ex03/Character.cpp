@@ -43,12 +43,11 @@ void Character::equip(AMateria *m)
 {
     if (!m)
         return;
-
     for (int i = 0; i < 4; i++)
     {
         if (!this->inventory[i])
         {
-            this->inventory[i] = m;
+            this->inventory[i] = m->clone();
             return;
         }
     }

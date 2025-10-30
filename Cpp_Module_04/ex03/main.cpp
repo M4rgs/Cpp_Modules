@@ -25,12 +25,15 @@ int main()
 
     tmp = src->createMateria("ice");
     alice->equip(tmp);
-
+    delete tmp;
+    
     tmp = src->createMateria("cure");
     alice->equip(tmp);
-
+    delete tmp;
+    
     tmp = src->createMateria("something else");
     alice->equip(tmp);
+    delete tmp;
 
 
     ICharacter* bob = new Character("bob");
