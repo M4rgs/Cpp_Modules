@@ -11,7 +11,7 @@ This repository contains the C++ (CPP) modules completed as part of the curricul
 - [ex01 - Classes, Object instantiation, Basic I/O, String manipulation](./Cpp_Module_00/ex01/)
 - [ex02 - File recreation, C++ programming, Object-oriented design](./Cpp_Module_00/ex02/)
 
-**Grade:**
+ **Grade:**
 - **100%**
 
 **Resources:**
@@ -37,7 +37,7 @@ This repository contains the C++ (CPP) modules completed as part of the curricul
 - [ex05 - Member Functions, Pointers to Member Functions, Enumeration, Logging](./Cpp_Module_01/ex05/)
 - [ex06 - Switch Statement, Filtering, Logging](./Cpp_Module_01/ex06/)
   
-  **Grade:**
+**Grade:**
 - **100%**
 
   ### Resources
@@ -76,9 +76,6 @@ This repository contains the C++ (CPP) modules completed as part of the curricul
 - **Check if a point lies inside a triangle :** [YouTube](https://www.youtube.com/watch?v=qObJQesvZUU)
 </details>
 
-**Grade:**
-- **100%**
-
 <details>
 <summary>Module 03 - Inheritance</summary>
 
@@ -86,6 +83,9 @@ This repository contains the C++ (CPP) modules completed as part of the curricul
 - [ex01 - Inheritance, Constructors/Destructors Chaining, Overriding Member Functions](./Cpp_Module_03/ex01/)
 - [ex02 - Inheritance, Constructors/Destructors Chaining, Overriding Member Functions](./Cpp_Module_03ex02/)
 - [ex03 - Diamond Problem, Multiple Inheritance, Constructors/Destructors Chaining, Accessing Attributes and Member Functions from Parent Classes](./Cpp_Module_03ex03/)
+
+**Grade:**
+- **100%**
 
 ### Resources
 - **Inheritance And Polymorphism:** [YouTube](https://www.youtube.com/watch?v=wrkkAOMp3Sw)
@@ -96,9 +96,6 @@ This repository contains the C++ (CPP) modules completed as part of the curricul
 - **Hybrid Inheritance in C++ with Diamond Problem:** [YouTube](https://www.youtube.com/watch?v=DiUXoiOLZY0)
 </details>
 
-**Grade:**
-- **100%**
-
 <details>
 <summary>Module 04 - Subtype polymorphism, abstract classes, interfaces</summary>
 
@@ -106,6 +103,9 @@ This repository contains the C++ (CPP) modules completed as part of the curricul
 - [ex01 - Memory Management, Deep Copy](./Cpp_Module_04/ex01/)
 - [ex02 - Abstract Classes](./Cpp_Module_04/ex02/)
 - [ex03 - Interfaces / Pure Abstract Classes](./Cpp_Module_04/ex03/)
+
+**Grade:**
+- **100%**
 
 ### Resources
 - **Polymorphism in C++ | Compile time vs Run time Polymorphism:** [YouTube](https://www.youtube.com/watch?v=uc_Hr10cBBE)
