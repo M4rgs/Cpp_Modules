@@ -5,33 +5,40 @@
 
 int main() 
 {
+    try 
     {
-        Bureaucrat br("Shrubbery", 9);
+        Bureaucrat br("T A H A", 9);
+        ShrubberyCreationForm fr("ShrubberyForm");
+        RobotomyRequestForm brf("RobotomyForm");
+        PresidentialPardonForm pr("PresidentForm");
 
-        ShrubberyCreationForm fr("testForm");
+        br.signForm(fr);
+        br.signForm(brf);
+        br.signForm(pr);
 
-        fr.beSigned(br);
-        br.executeForm(fr);
+        fr.execute(br);
+        brf.execute(br);
+        pr.execute(br);
 
     }
-    std::cout << std::endl;
+    catch(const AForm::GradeTooLowException &e)
     {
-        Bureaucrat br("Robotomy", 9);
-
-        RobotomyRequestForm brf("testForm");
-
-        brf.beSigned(br);
-        br.executeForm(brf);
-
+        std::cerr << e.what();
     }
-    std::cout << std::endl;
+    catch(const AForm::GradeTooHighException &e)
     {
-        Bureaucrat br("President", 9);
-
-        PresidentialPardonForm pr("testForm");
-
-        pr.beSigned(br);
-        br.executeForm(pr);
-
+        std::cerr << e.what();
+    }
+    catch(const AForm::FormNotSignedException &e)
+    {
+        std::cerr << e.what();
+    }
+    catch(const Bureaucrat::GradeTooLowException &e)
+    {
+        std::cerr << e.what();
+    }
+    catch(const Bureaucrat::GradeTooHighException &e)
+    {
+        std::cerr << e.what();
     }
 }
