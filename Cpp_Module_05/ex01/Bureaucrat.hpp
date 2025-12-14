@@ -1,7 +1,10 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
+#include "Form.hpp"
 #include <iostream>
+
+class Form;
 
 class Bureaucrat {
     private:
@@ -16,9 +19,10 @@ class Bureaucrat {
 
         int getGrade() const;
         std::string getName() const;
-        void enGrade();
-        void deGrade();
+        void incrementGrade();
+        void decrementGrade();
 
+        void signForm(Form &fr);
         class GradeTooHighException : public std::exception {
             public:
                 const char* what() const throw();

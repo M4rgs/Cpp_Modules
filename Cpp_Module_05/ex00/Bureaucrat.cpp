@@ -25,14 +25,14 @@ int Bureaucrat::getGrade() const
     return (grade);
 }
 
-void Bureaucrat::enGrade()
+void Bureaucrat::decrementGrade()
 {
     if (this->grade + 1 > 150)
         throw(GradeTooLowException());
     this->grade++;
 }
 
-void Bureaucrat::deGrade()
+void Bureaucrat::incrementGrade()
 {
     if (this->grade - 1 < 1)
         throw(GradeTooHighException());
@@ -44,10 +44,8 @@ Bureaucrat::~Bureaucrat()
     std::cout << "Destructor called !" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other)
+Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.grade)
 {
-    if (this != &other)
-        *this = other;
     std::cout << "Copy constructor called !" << std::endl;
 }
 

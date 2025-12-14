@@ -25,14 +25,14 @@ int Bureaucrat::getGrade() const
     return (grade);
 }
 
-void Bureaucrat::enGrade()
+void Bureaucrat::decrementGrade()
 {
     if (this->grade + 1 > 150)
         throw(GradeTooLowException());
     this->grade++;
 }
 
-void Bureaucrat::deGrade()
+void Bureaucrat::incrementGrade()
 {
     if (this->grade - 1 < 1)
         throw(GradeTooHighException());
@@ -44,10 +44,8 @@ Bureaucrat::~Bureaucrat()
     std::cout << "Destructor called !" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other)
+Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.grade)
 {
-    if (this != &other)
-        *this = other;
     std::cout << "Copy constructor called !" << std::endl;
 }
 
@@ -57,6 +55,23 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat& other)
         this->grade = other.getGrade();
     std::cout << "Copy assigmenet operator called !" << std::endl;
     return (*this);
+}
+
+void Bureaucrat::signForm(Form &fr)
+{
+    try 
+    {
+        fr.beSigned(*this);
+        std::cout << this->name << " signed " << fr.getName() << std::endl;
+    }
+    catch(const Form::GradeTooLowException &e)
+    {
+        std::cout << this->name << " couldn’t sign " << fr.getName() << " because " << e.what();
+    }
+    catch(const Form::FormIsAlreadySigned &f)
+    {
+        std::cout << this->name << " couldn’t sign " << fr.getName() << " because " << f.what();
+    }
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
