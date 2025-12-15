@@ -23,7 +23,21 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 void ShrubberyCreationForm::executeAction() const
 {
     std::ofstream ofile((target + "_shrubbery").c_str());
-    ofile <<"chjra hh \n";
+    if (!ofile)
+    {
+        std::cerr << "Error: Could not open the file !" << std::endl;
+        return ;
+    }
+    ofile << 
+        "       /\\\n"
+        "      /**\\\n"
+        "     /****\\\n"
+        "    /******\\\n"
+        "   /********\\\n"
+        "      ||||\n"
+        "      ||||\n";
+    
+    ofile.close();
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()

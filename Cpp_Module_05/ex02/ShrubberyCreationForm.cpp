@@ -28,7 +28,15 @@ void ShrubberyCreationForm::executeAction() const
         std::cerr << "Error: Could not open the file !" << std::endl;
         return ;
     }
-    ofile <<"chjra hh \n";
+    ofile << 
+        "       /\\\n"
+        "      /**\\\n"
+        "     /****\\\n"
+        "    /******\\\n"
+        "   /********\\\n"
+        "      ||||\n"
+        "      ||||\n";
+
     ofile.close();
 }
 
