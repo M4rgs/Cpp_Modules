@@ -20,45 +20,36 @@ Intern  &Intern::operator=(const Intern &other)
     (void)other;
     return *this;
 }
-AForm   *Intern::makeForm(const std::string formName, const std::string targetName)
+
+AForm	*makePresident(const std::string target)
 {
-    AForm *p = NULL;
-    const char* names[] = {"skip", "robotomy request", "presidential pardon", "shrubbery creation"};
-    int i = 0;
+	return (new PresidentialPardonForm(target));
+}
 
-    for (; i < 4; i++)
-    {
-        if (formName == names[i])
-        {
-            std::cout << "Intern creates " << formName << std::endl;
-            break;
-        }
-    }
+AForm	*makeRobot(const std::string target)
+{
+	return (new RobotomyRequestForm(target));
+}
 
-    switch (i)
-    {
-        case 1:
-        {
-            p = new RobotomyRequestForm(targetName);
-            break;
-        }
-        case 2:
-        {
-            p = new PresidentialPardonForm(targetName);
-            break;
-        }
-        case 3:
-        {
-            p = new ShrubberyCreationForm(targetName);
-            break;
-        }
-        default : 
-        {
-            throw Intern::FormNotFoundExeption();
-            break; 
-        }
-    }
-    return (p);
+AForm	*makeShrubbery(const std::string target)
+{
+	return (new ShrubberyCreationForm(target));
+}
+
+AForm	*Intern::makeForm(const std::string formName, const std::string targetName)
+{
+	AForm *(*all_forms[])(const std::string target) = {&makePresident, &makeRobot, &makeShrubbery};
+	std::string forms[] = {"presidential pardon", "robotomy request", "shrubbery creation"};
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (formName == forms[i])
+		{
+			std::cout << "Intern creates " << formName << " now" << std::endl;
+			return (all_forms[i](targetName));
+		}
+	}
+    throw(FormNotFoundExeption());
 }
 
 const char *Intern::FormNotFoundExeption::what() const throw()

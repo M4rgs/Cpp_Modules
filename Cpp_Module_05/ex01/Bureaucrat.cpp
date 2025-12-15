@@ -8,9 +8,9 @@ Bureaucrat::Bureaucrat() : name("def_bureaucrat"), grade(10)
 Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name)
 {
     if (grade < 1)
-    throw(GradeTooHighException());
+        throw(GradeTooHighException());
     else if (grade > 150)
-    throw(GradeTooLowException());
+        throw(GradeTooLowException());
     this->grade = grade;
     std::cout << "Prametrized constructor called !" << std::endl;
 }
