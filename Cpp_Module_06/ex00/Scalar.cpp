@@ -19,21 +19,22 @@ void    pritnResult(int inte, double dbl, float flt, char chr, std::string isPos
 {
     if (isPossible == "Impossible !")
     {
-        std::cout << "as Int :\t" << isPossible << std::endl;
-        std::cout << "as Double :\t" << isPossible << std::endl;
-        std::cout << "as Float :\t" << isPossible << std::endl;
-        std::cout << "as Char :\t" << isPossible << std::endl;
+        std::cout << "Char :\t" << isPossible << std::endl;
+        std::cout << "Int :\t" << isPossible << std::endl;
+        std::cout << "Float :\t" << isPossible << std::endl;
+        std::cout << "Double :\t" << isPossible << std::endl;
         return ;
 
     }
-    std::cout << "as Int :\t" << inte << std::endl;
-    std::cout << "as Double :\t"  << std::fixed << std::setprecision(6) << dbl << std::endl;
-    std::cout << "as Float :\t" <<  std::fixed << std::setprecision(2) << flt << "f" << std::endl;
-    std::cout << "as Char :\t";
+    std::cout << "Char   :\t";
     if (!(chr >= 32 && chr <= 126))
         std::cout << "Impossible" << std::endl;
     else
         std::cout << "'" << chr << "'" << std::endl;
+    std::cout << "Int    :\t" << inte << std::endl;
+    std::cout << "Float  :\t" <<  std::fixed << std::setprecision(1) << flt << "f" << std::endl;
+    std::cout << "Double :\t"  << std::fixed << std::setprecision(1) << dbl << std::endl;
+    
 }
 
 bool isInt(const std::string input)
