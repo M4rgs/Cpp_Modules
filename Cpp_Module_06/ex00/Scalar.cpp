@@ -27,11 +27,17 @@ void    pritnResult(int inte, double dbl, float flt, char chr, std::string isPos
 
     }
     std::cout << "Char   :\t";
-    if (!(chr >= 32 && chr <= 126))
-        std::cout << "Impossible" << std::endl;
+    if (isPossible == "nan")
+        std::cout << "Impossible !" << std::endl;
+    else if (!(chr >= 32 && chr <= 126))
+        std::cout << "Inprentible !" << std::endl;
     else
         std::cout << "'" << chr << "'" << std::endl;
-    std::cout << "Int    :\t" << inte << std::endl;
+    std::cout << "Int    :\t";
+     if (isPossible == "nan")
+        std::cout << "Impossible !" << std::endl;
+    else
+        std::cout << inte << std::endl;
     std::cout << "Float  :\t" <<  std::fixed << std::setprecision(1) << flt << "f" << std::endl;
     std::cout << "Double :\t"  << std::fixed << std::setprecision(1) << dbl << std::endl;
     
@@ -52,11 +58,15 @@ bool isInt(const std::string input)
     return (true);
 }
 
-bool isDouble(std::string input)
+bool isDouble(std::string input, std::string &poss)
 {
     int pCount = 0;
     size_t i = 0;
-
+    if (input == "-inff" || input == "+inff" || input == "inff" || input == "nanf")
+    {
+        poss = "nan";
+        return (true);
+    }
     if (input[i] == '+' || input[i] == '-')
         i++;
     for (; i < input.size(); i++)
@@ -73,12 +83,17 @@ bool isDouble(std::string input)
     return (true);
 }
 
-bool isFloat(std::string input)
+bool isFloat(std::string input, std::string &poss)
 {
     int pCount = 0;
     int fCount = 0;
     size_t i = 0;
 
+    if (input == "-inff" || input == "+inff" || input == "inff" || input == "nanf")
+    {
+        poss = "nan";
+        return (true);
+    }
     if (input[i] == '+' || input[i] == '-')
         i++;
     for (; i < input.size(); i++)
@@ -104,6 +119,7 @@ void ScalarConverter::convert(const std::string input)
     double dbl = 0;
     float flt = 0;
     char chr = 0;
+    std::string poss = "";
 
     if (isInt(input) == true)
     {
@@ -112,7 +128,7 @@ void ScalarConverter::convert(const std::string input)
         flt = static_cast<float>(inte);
         chr = static_cast<char>(inte);
     }
-    else if (isFloat(input) == true)
+    else if (isFloat(input, poss) == true)
     {
         std::stringstream ss(input);
         ss >> flt;
@@ -127,7 +143,7 @@ void ScalarConverter::convert(const std::string input)
         inte = static_cast<double>(chr);
         flt = static_cast<float>(chr);
     }
-    else if (isDouble(input))
+    else if (isDouble(input, poss))
     {
         std::stringstream ss(input);
         ss >> dbl;
@@ -136,11 +152,8 @@ void ScalarConverter::convert(const std::string input)
         chr = static_cast<char>(dbl);
     }
     else
-    {
-        pritnResult(inte, dbl, flt, chr, "Impossible !");
-        exit (1);
-    }
-    pritnResult(inte, dbl, flt, chr, "POSSIBLE");
+        poss = "Impossible !";
+    pritnResult(inte, dbl, flt, chr, poss);
 
 }
 
