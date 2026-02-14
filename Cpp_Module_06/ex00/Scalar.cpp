@@ -15,20 +15,20 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter& other)
     return (*this);
 }
 
-void    printResult(int inte, double dbl, float flt, char chr, std::string isPossible)
+void    printResult(int inte, double dbl, float flt, char chr, std::string isPossible, bool &isOver)
 {
     if (isPossible == "Impossible !")
     {
-        std::cout << "Char :\t" << isPossible << std::endl;
-        std::cout << "Int :\t" << isPossible << std::endl;
-        std::cout << "Float :\t" << isPossible << std::endl;
+        std::cout << "Char   :\t" << isPossible << std::endl;
+        std::cout << "Int    :\t" << isPossible << std::endl;
+        std::cout << "Float  :\t" << isPossible << std::endl;
         std::cout << "Double :\t" << isPossible << std::endl;
         return ;
 
     }
 
     std::cout << "Char   :\t";
-    if (isPossible == "nan"|| isPossible == "inf")
+    if (isPossible == "nan"|| isPossible == "inf" || isOver)
         std::cout << "Impossible !" << std::endl;
     else if (!(chr >= 32 && chr <= 126))
         std::cout << "Non displayable !" << std::endl;
@@ -36,7 +36,7 @@ void    printResult(int inte, double dbl, float flt, char chr, std::string isPos
         std::cout << "'" << chr << "'" << std::endl;
 
     std::cout << "Int    :\t";
-     if (isPossible == "nan" || isPossible == "inf")
+     if (isPossible == "nan" || isPossible == "inf" || isOver)
         std::cout << "Impossible !" << std::endl;
     else
         std::cout << inte << std::endl;
@@ -55,9 +55,11 @@ void    printResult(int inte, double dbl, float flt, char chr, std::string isPos
     
 }
 
-bool isInt(const std::string input)
+bool isInt(const std::string input, bool &isOver)
 {
     size_t i = 0;
+    long long tmp;
+
     if (input[0] == '+' || input[0] == '-')
         i = 1;
     if (i && !input[1])
@@ -67,6 +69,10 @@ bool isInt(const std::string input)
         if (input[i] < '0' || input[i] > '9')
             return (false);
     }
+    std::stringstream tm(input);
+    tm >> tmp;
+    if (tmp > (long long)std::numeric_limits<int>::max() || tmp < (long long)std::numeric_limits<int>::min())
+        isOver = true;
     return (true);
 }
 
@@ -157,10 +163,11 @@ void ScalarConverter::convert(const std::string input)
     double dbl = 0;
     float flt = 0;
     char chr = 0;
+    bool isOver = false;
 
     std::string poss = "";
 
-    if (isInt(input) == true)
+    if (isInt(input, isOver) == true)
     {
         inte = atoi(input.c_str());
         dbl = static_cast<double>(inte);
@@ -169,7 +176,7 @@ void ScalarConverter::convert(const std::string input)
     }
     else if (isFloat(input, poss) == true)
     {
-        if (poss != "nan")
+        if (poss != "nan" || poss == "inf")
         {
             std::stringstream ss(input);
             ss >> flt;
@@ -186,7 +193,7 @@ void ScalarConverter::convert(const std::string input)
     }
     else if (isDouble(input, poss))
     {
-        if (poss != "nan")
+        if (poss != "nan" || poss == "inf")
         {
             std::stringstream ss(input);
             ss >> dbl;
@@ -197,7 +204,7 @@ void ScalarConverter::convert(const std::string input)
     }
     else
         poss = "Impossible !";
-    printResult(inte, dbl, flt, chr, poss);
+    printResult(inte, dbl, flt, chr, poss, isOver);
 
 }
 
