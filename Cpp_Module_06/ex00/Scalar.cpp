@@ -15,7 +15,7 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter& other)
     return (*this);
 }
 
-void    pritnResult(int inte, double dbl, float flt, char chr, std::string isPossible)
+void    printResult(int inte, double dbl, float flt, char chr, std::string isPossible)
 {
     if (isPossible == "Impossible !")
     {
@@ -26,20 +26,32 @@ void    pritnResult(int inte, double dbl, float flt, char chr, std::string isPos
         return ;
 
     }
+
     std::cout << "Char   :\t";
-    if (isPossible == "nan")
+    if (isPossible == "nan"|| isPossible == "inf")
         std::cout << "Impossible !" << std::endl;
     else if (!(chr >= 32 && chr <= 126))
-        std::cout << "Inprentible !" << std::endl;
+        std::cout << "Non displayable !" << std::endl;
     else
         std::cout << "'" << chr << "'" << std::endl;
+
     std::cout << "Int    :\t";
-     if (isPossible == "nan")
+     if (isPossible == "nan" || isPossible == "inf")
         std::cout << "Impossible !" << std::endl;
     else
         std::cout << inte << std::endl;
-    std::cout << "Float  :\t" <<  std::fixed << std::setprecision(1) << flt << "f" << std::endl;
-    std::cout << "Double :\t"  << std::fixed << std::setprecision(1) << dbl << std::endl;
+
+    std::cout << "Float  :\t";
+    if (isPossible == "nan" || isPossible == "inf")
+        std::cout << isPossible << "f" <<  std::endl;
+    else
+       std::cout <<  std::fixed << std::setprecision(1) << flt << "f" << std::endl;
+
+    std::cout << "Double :\t"  ;
+    if (isPossible == "nan" || isPossible == "inf")
+        std::cout << isPossible << std::endl;
+    else
+        std::cout << std::fixed << std::setprecision(1) << dbl << std::endl;
     
 }
 
@@ -62,10 +74,17 @@ bool isDouble(std::string input, std::string &poss)
 {
     int pCount = 0;
     size_t i = 0;
-    if (input == "-inff" || input == "+inff" || input == "inff" || input == "nanf")
+    bool hasDigit = false;
+
+    if (input == "nan")
     {
         poss = "nan";
         return (true);
+    }
+    if (input == "-inf" || input == "+inf" || input == "inf")
+    {
+        poss = "inf";
+        return true;
     }
     if (input[i] == '+' || input[i] == '-')
         i++;
@@ -75,10 +94,12 @@ bool isDouble(std::string input, std::string &poss)
             return (false);
         else if (input[i] == '.')
             pCount++;
+        else if (isdigit(input[i]))
+            hasDigit = true;
         else if (input[i] < '0' || input[i] > '9')
             return (false);
     }
-    if (pCount != 1)
+    if (pCount != 1 || !hasDigit)
         return (false);
     return (true);
 }
@@ -89,10 +110,15 @@ bool isFloat(std::string input, std::string &poss)
     int fCount = 0;
     size_t i = 0;
 
-    if (input == "-inff" || input == "+inff" || input == "inff" || input == "nanf")
+    if (input == "nanf")
     {
         poss = "nan";
         return (true);
+    }
+    if (input == "-inff" || input == "+inff" || input == "inff")
+    {
+        poss = "inf";
+        return true;
     }
     if (input[i] == '+' || input[i] == '-')
         i++;
@@ -112,6 +138,18 @@ bool isFloat(std::string input, std::string &poss)
     return (true);
 }
 
+char    isChar(std::string input)
+{
+    if (input.size() == 1 && (input[0] >= 32 && input[0] <= 126))
+        return input[0];
+    if (input[0] == '\'')
+    {
+        if (input.size() == 3 && input[2] == '\'' && (input[1] >= 32 && input[1] <= 126))
+            return input[1];
+    } 
+    return -1;
+}
+
 void ScalarConverter::convert(const std::string input)
 {
 
@@ -119,6 +157,7 @@ void ScalarConverter::convert(const std::string input)
     double dbl = 0;
     float flt = 0;
     char chr = 0;
+
     std::string poss = "";
 
     if (isInt(input) == true)
@@ -130,30 +169,35 @@ void ScalarConverter::convert(const std::string input)
     }
     else if (isFloat(input, poss) == true)
     {
-        std::stringstream ss(input);
-        ss >> flt;
+        if (poss != "nan")
+        {
+            std::stringstream ss(input);
+            ss >> flt;
+        }
         dbl = static_cast<double>(flt);
-        inte = static_cast<double>(flt);
-        chr = static_cast<double>(flt);
+        inte = static_cast<int>(flt);
+        chr = static_cast<char>(flt);
     }
-    else if (input.size() == 1 && (input[0] >= 32 && input[0] <= 126))
+    else if ((chr = isChar(input)) != -1)
     {
-        chr = input[0];
         dbl = static_cast<double>(chr);
-        inte = static_cast<double>(chr);
+        inte = static_cast<int>(chr);
         flt = static_cast<float>(chr);
     }
     else if (isDouble(input, poss))
     {
-        std::stringstream ss(input);
-        ss >> dbl;
+        if (poss != "nan")
+        {
+            std::stringstream ss(input);
+            ss >> dbl;
+        }
         inte = static_cast<int>(dbl);
         flt = static_cast<float>(dbl);
         chr = static_cast<char>(dbl);
     }
     else
         poss = "Impossible !";
-    pritnResult(inte, dbl, flt, chr, poss);
+    printResult(inte, dbl, flt, chr, poss);
 
 }
 
