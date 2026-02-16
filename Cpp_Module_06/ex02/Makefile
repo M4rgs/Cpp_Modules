@@ -2,7 +2,7 @@ NAME = Base
 
 C++ = c++
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -std=c++98 
 
 SRC = Base.cpp main.cpp
 
