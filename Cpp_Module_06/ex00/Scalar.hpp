@@ -2,10 +2,8 @@
 #define SCALAR_HPP
 
 #include <iostream>
-#include <cctype>
-#include <cstdlib>
 #include <limits>
-#include <cmath>
+#include <cstdlib>
 #include <iomanip>
 #include <sstream>
 
