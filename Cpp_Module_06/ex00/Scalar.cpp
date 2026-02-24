@@ -16,38 +16,48 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter& other)
 }
 
 
-void    printDouble(double dbl, std::string isPossible)
+void printDouble(double dbl, const std::string poss, bool isSpecial)
 {
-    std::cout << "Double :\t"  ;
-    if (isPossible == "nan" || isPossible == "inf")
-        std::cout << isPossible << std::endl;
+    std::cout << "Double :\t";
+    if (isSpecial)
+    {
+        if (poss == "inff" ||poss == "+inff" ||poss == "-inff" || poss == "nanf")
+            std::cout << poss.substr(0, poss.size() - 1) << std::endl;
+        else
+            std::cout << poss << std::endl;
+    }
     else
         std::cout << std::fixed << std::setprecision(1) << dbl << std::endl;
 }
 
-void    printFloat(float flt, std::string isPossible)
+void printFloat(float flt, const std::string poss, bool isSpeci)
 {
     std::cout << "Float  :\t";
-    if (isPossible == "nan" || isPossible == "inf")
-        std::cout << isPossible << "f" <<  std::endl;
+    if (isSpeci)
+    {
+        if (poss == "inf" ||poss == "+inf" ||poss == "-inf" || poss == "nan")
+            std::cout << poss << "f" << std::endl;
+        else
+            std::cout << poss << std::endl;
+    }
     else
-       std::cout <<  std::fixed << std::setprecision(1) << flt << "f" << std::endl;
+        std::cout << std::fixed << std::setprecision(1) << flt << "f" << std::endl;
 }
 
-void    printInt(int inte, bool isOver, std::string isPossible)
+void    printInt(int inte, bool isOver, bool isSpeci)
 {
     std::cout << "Int    :\t";
-    if (isPossible == "nan" || isPossible == "inf" || isOver)
+    if (isSpeci || isOver)
         std::cout << "Impossible !" << std::endl;
     else
         std::cout << inte << std::endl;    
 }
 
 
-void    printChar(int chr, bool isOver, std::string isPossible)
+void    printChar(int chr, bool isOver, bool isSpeci)
 {
     std::cout << "Char   :\t";
-    if (isPossible == "nan"|| isPossible == "inf" || isOver || (chr < std::numeric_limits<char>::min() ||
+    if (isSpeci || isOver || (chr < std::numeric_limits<char>::min() ||
          chr > std::numeric_limits<char>::max()))
         std::cout << "Impossible !" << std::endl;
     else if (!std::isprint(static_cast<char>(chr)))
@@ -57,7 +67,7 @@ void    printChar(int chr, bool isOver, std::string isPossible)
     
 }
 
-void    printResult(int inte, double dbl, float flt, std::string isPossible, bool isOver)
+void    printResult(int inte, double dbl, float flt, std::string isPossible, bool isOver, bool isSpeci)
 {
     if (isPossible == "Impossible !")
     {
@@ -69,13 +79,13 @@ void    printResult(int inte, double dbl, float flt, std::string isPossible, boo
 
     }
 
-    printChar(inte, isOver, isPossible);
+    printChar(inte, isOver, isSpeci);
 
-    printInt(inte, isOver, isPossible);
+    printInt(inte, isOver, isSpeci);
 
-    printFloat(flt, isPossible);
+    printFloat(flt, isPossible, isSpeci);
 
-    printDouble(dbl, isPossible);
+    printDouble(dbl, isPossible, isSpeci);
 }
 
 bool isInt(const std::string input, long long &tmp, bool &isOver)
@@ -84,7 +94,7 @@ bool isInt(const std::string input, long long &tmp, bool &isOver)
 
     if (input[0] == '+' || input[0] == '-')
         i = 1;
-    if (i && !input[1])
+    if (i == 1 && input.size() == 1)
         return (false);
     for (; i < input.size(); i++)
     {
@@ -106,14 +116,10 @@ bool isDouble(std::string input, std::string &poss)
     size_t i = 0;
     bool hasDigit = false;
 
-    if (input == "nan")
+
+    if (input == "-inf" || input == "+inf" || input == "inf" || input == "nan")
     {
-        poss = "nan";
-        return (true);
-    }
-    if (input == "-inf" || input == "+inf" || input == "inf")
-    {
-        poss = "inf";
+        poss = input;
         return true;
     }
     if (input[i] == '+' || input[i] == '-')
@@ -139,15 +145,11 @@ bool isFloat(std::string input, std::string &poss)
     int pCount = 0;
     int fCount = 0;
     size_t i = 0;
+    bool hasDigit = false;
 
-    if (input == "nanf")
+    if (input == "-inff" || input == "+inff" || input == "inff" || input == "nanf")
     {
-        poss = "nan";
-        return (true);
-    }
-    if (input == "-inff" || input == "+inff" || input == "inff")
-    {
-        poss = "inf";
+        poss = input;
         return true;
     }
     if (input[i] == '+' || input[i] == '-')
@@ -158,12 +160,14 @@ bool isFloat(std::string input, std::string &poss)
             return (false);
         else if (input[i] == '.')
             pCount++;
+        else if (isdigit(input[i]))
+            hasDigit = true;
         else if (input[i] == 'f')
             fCount++;
         else if (input[i] < '0' || input[i] > '9')
             return (false);
     }
-    if (pCount != 1 || fCount != 1)
+    if (pCount != 1 || fCount != 1 || !hasDigit)
         return (false);
     return (true);
 }
@@ -180,6 +184,18 @@ char    isChar(std::string input)
     return -1;
 }
 
+
+void    isSpecial(std::string input, bool &isSpeci)
+{
+    if (input == "nan" || input == "nanf" ||
+    input == "+inf" || input == "-inf" ||
+    input == "+inff" || input == "-inff"|| 
+    input == "inff"|| input == "inf")
+    {
+        isSpeci = true;
+    }
+}
+
 void ScalarConverter::convert(const std::string input)
 {
 
@@ -188,10 +204,12 @@ void ScalarConverter::convert(const std::string input)
     float flt = 0;
     char chr = 0;
     bool isOver = false;
+    bool isSpeci = false;
 
     std::string poss = "";
 
     long long tmp;
+    isSpecial(input, isSpeci);
     if (isInt(input, tmp, isOver))
     {
         if (!isOver)
@@ -202,7 +220,7 @@ void ScalarConverter::convert(const std::string input)
     }
     else if (isFloat(input, poss) == true)
     {
-        if (poss != "nan" && poss != "inf")
+        if (!isSpeci)
         {
             std::stringstream ss(input);
             ss >> flt;
@@ -220,7 +238,7 @@ void ScalarConverter::convert(const std::string input)
     }
     else if (isDouble(input, poss))
     {
-        if (poss != "nan" && poss != "inf")
+        if (!isSpeci)
         {
             std::stringstream ss(input);
             ss >> dbl;
@@ -232,7 +250,7 @@ void ScalarConverter::convert(const std::string input)
     }
     else
         poss = "Impossible !";
-    printResult(inte, dbl, flt, poss, isOver);
+    printResult(inte, dbl, flt, poss, isOver, isSpeci);
 
 }
 
