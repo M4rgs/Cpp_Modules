@@ -5,15 +5,22 @@
 
 int main()
 {   
+    std::srand(std::time(0));
     {
-        Base *t = generate();
-        identify(t);
-        delete t;
+        for (int i = 0; i < 8; i++)
+        {
+            Base *t = generate();
+            identify(t);
+            delete t;
+        }
     }
     std::cout << std::endl;
     {
-        Base *t = generate();
-        identify(*t);
-        delete t;
+       for (int i = 0; i < 8; i++)
+        {
+            Base *t = generate();
+            identify(*t);
+            delete t;
+        }
     }
 }

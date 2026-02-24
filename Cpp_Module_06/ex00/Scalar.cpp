@@ -16,6 +16,18 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter& other)
 }
 
 
+void    isSpecial(std::string input, bool &isSpeci)
+{
+    if (input == "nan" || input == "nanf" ||
+    input == "+inf" || input == "-inf" ||
+    input == "+inff" || input == "-inff"|| 
+    input == "inff"|| input == "inf")
+    {
+        isSpeci = true;
+    }
+}
+
+
 void printDouble(double dbl, const std::string poss, bool isSpecial)
 {
     std::cout << "Double :\t";
@@ -178,22 +190,10 @@ char    isChar(std::string input)
         return input[0];
     if (input[0] == '\'')
     {
-        if (input.size() == 3 && input[2] == '\'' && (std::isprint(input[1]) && !std::isdigit(input[1])))
+        if (input.size() == 3 && input[2] == '\'' && (std::isprint(input[1])))
             return input[1];
     } 
     return -1;
-}
-
-
-void    isSpecial(std::string input, bool &isSpeci)
-{
-    if (input == "nan" || input == "nanf" ||
-    input == "+inf" || input == "-inf" ||
-    input == "+inff" || input == "-inff"|| 
-    input == "inff"|| input == "inf")
-    {
-        isSpeci = true;
-    }
 }
 
 void ScalarConverter::convert(const std::string input)

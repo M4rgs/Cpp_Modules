@@ -8,7 +8,7 @@ SRC = Base.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-HEADERS = A.hpp B.hpp C.hpp
+HEADERS = A.hpp B.hpp C.hpp Base.hpp
 
 all:$(NAME)
 
