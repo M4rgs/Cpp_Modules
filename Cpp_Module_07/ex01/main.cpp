@@ -1,5 +1,6 @@
 #include "iter.hpp"
 
+
 void print(const char &c)
 {
     std::cout << c << " ";
@@ -9,6 +10,13 @@ void print(const char &c)
 void high(char &c)
 {
     c = std::toupper(c);
+}
+
+template<typename T>
+
+void printT(T &c)
+{
+    std::cout << c << " ";
 }
 
 int main()
@@ -32,6 +40,9 @@ int main()
     iter(b, 5, print);
     std::cout << std::endl;
 
-
+    char v[]= "taha";
+    std::cout << "----printing T function params----"<<std::endl;
+    iter(v, 4, printT<char>);
+    std::cout << std::endl;
 
 }

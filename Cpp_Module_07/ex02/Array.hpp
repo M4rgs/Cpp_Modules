@@ -12,67 +12,27 @@ class Array {
         unsigned int arrSize;
 
     public :
-        Array()
-        {
-            this->arrSize = 0;
-            this->arr = NULL;
-        }
+        Array();
 
-        Array(unsigned int n)
-        {
-            this->arrSize = n;
-            this->arr = new T[this->arrSize];
-        }
+        Array(unsigned int n);
 
-        Array(const Array &other)
-        {
-            arrSize = other.arrSize;
-            arr = NULL;
-            *this = other;
-        }
+        Array(const Array &other);
 
-        Array &operator=(const Array &other)
-        {
-            if (this == &other)
-                return *this;
+        Array &operator=(const Array &other);
 
-            delete[] arr;
-            arr = NULL;
-
-            arrSize = other.arrSize;
-
-            if (arrSize > 0)
-            {
-                arr = new T[arrSize];
-                for (unsigned int i = 0; i < arrSize; i++)
-                    arr[i] = other.arr[i];
-            }
-
-            return *this;
-        }
         class OutOfBound : public std::exception
         {
             public:
-                const char *what() const throw()
-                {
-                    return ("Index out of bound !");
-                }
+                const char *what() const throw();
         };
 
-        T& operator[](unsigned int index)
-        {
-            if (index >= this->arrSize)
-                throw(OutOfBound());
-            return (this->arr[index]);
-        }
-        unsigned int size() const
-        {
-            return (this->arrSize);
-        }
+        T& operator[](unsigned int index);
 
-        ~Array()
-        {
-            delete [] arr;
-        }
+        unsigned int size() const;
+
+        ~Array();
 };
+
+#include "Array.tpp"
+
 #endif

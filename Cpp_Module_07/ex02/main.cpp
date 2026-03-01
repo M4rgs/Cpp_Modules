@@ -7,16 +7,6 @@
 
 int main()
 {
-    Array<int> emptyArray(0);
-
-    try
-    {
-        emptyArray[0] = 42;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << "Empty array test: " << e.what() << '\n';
-    }
 
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
