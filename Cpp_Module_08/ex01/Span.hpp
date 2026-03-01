@@ -17,9 +17,9 @@ class Span{
         ~Span();
 
         void addNumber(unsigned int newNum);
+        void addNumbers(std::vector<int>::iterator beg, std::vector<int>::iterator end);
         int shortestSpan();
         int longestSpan();
-
 
         class CouldNotAdd : public std::exception 
         {

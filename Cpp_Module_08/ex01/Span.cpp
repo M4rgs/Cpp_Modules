@@ -58,6 +58,14 @@ int Span::shortestSpan()
     return shortest;
 }
 
+void Span::addNumbers(std::vector<int>::iterator beg, std::vector<int>::iterator end)
+{
+    if (this->N == this->vect.size())
+        throw CouldNotAdd();
+    for (;this->vect.size() < N && beg < end; beg++)
+        this->vect.push_back(*beg);
+}
+
 int Span::longestSpan()
 {
 
