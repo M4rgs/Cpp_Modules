@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 class Span{
     private:
@@ -16,7 +17,8 @@ class Span{
         ~Span();
 
         void addNumber(unsigned int newNum);
-
+        int shortestSpan();
+        int longestSpan();
 
 
         class CouldNotAdd : public std::exception 
@@ -25,6 +27,15 @@ class Span{
                 const char* what() const throw()
                 {
                     return "Can't Add The Number !";
+                }
+        };
+
+        class CouldNotFindSpan : public std::exception 
+        {
+            public:
+                const char* what() const throw()
+                {
+                    return "Can't Find Span !";
                 }
         };
 };
