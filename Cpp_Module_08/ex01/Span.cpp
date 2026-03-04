@@ -23,7 +23,7 @@ Span &Span::operator=(const Span& other)
     {
         if (this->vect.size() > 0)
             this->vect.clear();
-        for (unsigned int i = 0; i < N; i++)
+        for (unsigned int i = 0; i < other.vect.size(); i++)
             this->vect.push_back(other.vect[i]);
         this->N = other.N;
     }
@@ -37,24 +37,23 @@ void Span::addNumber(unsigned int newNumber)
     this->vect.push_back(newNumber);
 }
 
-
-int Span::shortestSpan()
+long long Span::shortestSpan()
 {
-
     if (this->vect.size() <= 1)
         throw CouldNotFindSpan();
 
-    std::vector<int>tmp = this->vect;
-    sort(tmp.begin(), tmp.end());
+    std::vector<int> tmp = this->vect;
+    std::sort(tmp.begin(), tmp.end());
 
-    int shortest = tmp[1] - tmp[0];
+    long long shortest = static_cast<long long>(tmp[1]) - tmp[0];
 
-    for (size_t i = 0; i < tmp.size() - 1; i++)
+    for (size_t i = 1; i < tmp.size() - 1; i++)
     {
-        int temp = tmp[i + 1] - tmp[i];
-        if (temp  < shortest)
+        long long temp = static_cast<long long>(tmp[i + 1]) - static_cast<long long>(tmp[i]);
+        if (temp < shortest)
             shortest = temp;
     }
+
     return shortest;
 }
 
@@ -66,16 +65,16 @@ void Span::addNumbers(std::vector<int>::iterator beg, std::vector<int>::iterator
         this->vect.push_back(*beg);
 }
 
-int Span::longestSpan()
+long long Span::longestSpan()
 {
 
     if (this->vect.size() <= 1)
         throw CouldNotFindSpan();
 
     std::vector<int>tmp = this->vect;
-    sort(tmp.begin(), tmp.end());
+    std::sort(tmp.begin(), tmp.end());
 
-    int biggest = tmp.back() - tmp[0];
+    long long biggest = static_cast<long long>(tmp.back()) - static_cast<long long>(tmp[0]);
     return biggest;
 }
 
