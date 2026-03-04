@@ -125,6 +125,101 @@ This repository contains the C++ (CPP) modules completed as part of the curricul
 </details>
 
 
+<details>
+<summary>Module 05 - Try/Catch and Exceptions</summary>
+
+- [ex00 - Exception handling, class design](./Cpp_Module_05/ex00/)
+- [ex01 - Exception handling, class design, member functions](./Cpp_Module_05/ex01/)
+- [ex02 - Abstract classes, inheritance, polymorphism, execution logic](./Cpp_Module_05/ex02/)
+- [ex03 - Factory method, class design, string manipulation](./Cpp_Module_05/ex03/)
+
+**Grade:**
+- **100%**
+
+### Resources
+- **Exception Handling - C++ Tutorial For Beginners** [NeuralNine](https://www.youtube.com/watch?v=5MI2N8yLdMI)
+- **Throwing Exceptions in C++** [RollBar](https://rollbar.com/blog/error-exceptions-in-c/#)
+- **Exception handling in C++ (How to handle errors in your program?)** [CodeBeauty](https://www.youtube.com/watch?v=kjEhqgmEiWY)
+- **C++ Nested Try Catch statements | Re throwing Exceptions** [LearningLad](https://www.youtube.com/watch?v=UcT_sXaJF94)
+- **How to Implement Custom Exceptions in  C++** [Rollbar Editorial Team](https://rollbar.com/blog/cpp-custom-exceptions/#)
+- **std::exception** [cppreference](https://en.cppreference.com/w/cpp/error/exception)
+- **Intermediate-Advanced C++ 3: Custom Exceptions** [Cave of Programming](https://www.youtube.com/watch?v=64HmWAH9Jvg)
+- **How to Create a Random Number Generator in C++** [digitalocean](https://www.digitalocean.com/community/tutorials/random-number-generator-c-plus-plus)
+- **C++ Files** [w3schools](https://www.w3schools.com/cpp/cpp_files.asp)
+- **Is this really 50/50 chance?** [cplusplus](https://cplusplus.com/forum/beginner/48833/)
+- **Declaring an array of functions inside a class** [stackoverflow](https://stackoverflow.com/questions/68666087/declaring-an-array-of-functions-inside-a-class)
+- **Factory Method in C++, the Right Way** [medium](https://medium.com/@antwang/factory-method-in-c-the-right-way-e8c5f015fe39)
+</details>
+
+
+<details>
+<summary>Module 06 - C++ casts</summary>
+
+- [ex00 - type conversion, static_cast](./Cpp_Module_06/ex00/)
+- [ex01 - reinterpret_cast](./Cpp_Module_06/ex01/)
+- [ex02 - dynamic_cast](./Cpp_Module_06/ex02/)
+
+**Grade:**
+- **100%**
+
+### Resources
+- **Type Conversion in C++** [scaler](https://www.scaler.com/topics/cpp/type-conversion-in-cpp/)
+- **Type Conversions in C++** [Neso Academy](https://www.youtube.com/watch?v=uI10H1jzw00&ab_channel=NesoAcademy)
+- **Type Punning in C++** [The Cherno](https://www.youtube.com/watch?v=8egZ_5GA9Bc&ab_channel=TheCherno)
+- **Casting in C++** [The Cherno](https://www.youtube.com/watch?v=pWZS1MtxI-A&ab_channel=TheCherno)
+- **std::string::find_first_not_of** [cppreference](https://en.cppreference.com/w/cpp/types/numeric_limits)
+- **strtof, strtod, strtold** [cppreference](https://en.cppreference.com/w/c/string/byte/strtof)
+- **C++ Casting - Part 3 - static_cast and dynamic_cast (mega lesson) | Modern Cpp Series** [Mike Shah
+](https://www.youtube.com/watch?v=rJO7azMDOjU)
+- **C++ Casting - Part 4 - static_cast vs dynamic_cast (Interview Question)** [Mike Shah
+](https://www.youtube.com/watch?v=pHktGhvXVR0)
+- **C++ Casting - Part 5 - reinterpret_cast | Modern Cpp Series** [Mike Shah](https://www.youtube.com/watch?v=jQR2doi51Bo)
+- **What is the uintptr_t data type?** [stackoverflow](https://stackoverflow.com/questions/1845482/what-is-the-uintptr-t-data-type)
+- **dynamic_cast conversion** [cppreference](https://en.cppreference.com/w/cpp/language/dynamic_cast)
+</details>
+
+
+<details>
+<summary>Module 07 - C++ templates</summary>
+
+- [ex00 - template functions, swap, min, max](./Cpp_Module_07/ex00/)
+- [ex01 - iterate with template](./Cpp_Module_07/ex01/)
+- [ex02 - template class](./Cpp_Module_07/ex02/)
+
+**Grade:**
+- **100%**
+
+### Resources
+- **C++ Function Template** [programiz](https://www.programiz.com/cpp-programming/function-template)
+- **C++ Class Templates** [programiz](https://www.programiz.com/cpp-programming/class-templates)
+- **Overloading Subscript or array index operator [] in C++** [geeksforgeeks](https://www.geeksforgeeks.org/overloading-subscript-or-array-index-operator-in-c/)
+- **Why use a "tpp" file when implementing templated functions and classes defined in a header?** [stackoverflow](https://stackoverflow.com/questions/44774036/why-use-a-tpp-file-when-implementing-templated-functions-and-classes-defined-i)
+- **Candidate template ignored: deduced conflicting types for parameter: <const T &> vs <T &>** [stackoverflow](https://stackoverflow.com/questions/29367467/candidate-template-ignored-deduced-conflicting-types-for-parameter-const-t)
+</details>
+
+<details>
+<summary>Module 08 - Templated containers, iterators, algorithms</summary>
+
+- [ex00 - Function templates, container manipulation, exception handling](./Cpp_Module_08/ex00/)
+- [ex01 - std::max, std::min, std::sort exceptions, iterators](./Cpp_Module_08/ex01/)
+- [ex02 - Iterators, template specialization](./Cpp_Module_08/ex02/)
+
+**Grade:**
+- **100%**
+
+### Resources
+- **Back To Basics: C++ Containers** [javidx9](https://www.youtube.com/watch?v=6OoSgY6NVVk&ab_channel=javidx9)
+- **Back to Basics: Classic STL - Bob Steagall - CppCon 2021** [CppCon](https://www.youtube.com/watch?v=tXUXl_RzkAk)
+- **The C++ Standard Template Library (STL)** [geeksforgeeks](https://www.geeksforgeeks.org/the-c-standard-template-library-stl/)
+- **Containers** [cplusplus](https://cplusplus.com/reference/stl/)
+- **C++ Vectors** [programiz](https://www.programiz.com/cpp-programming/vectors)
+- **std::max** [cppreference](https://en.cppreference.com/w/cpp/algorithm/max)
+- **std::sort** [cppreference](https://en.cppreference.com/w/cpp/algorithm/sort)
+- **How do I find the max element in a vector (C++)?** [stackoverflow](https://stackoverflow.com/questions/32159151/how-do-i-find-the-max-element-in-a-vector-c)
+- **std::stack** [cppreference](https://cplusplus.com/reference/stack/stack/)
+</details>
+
+
 ## Getting Started
 
 1. Clone this repository:
