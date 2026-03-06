@@ -12,7 +12,8 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
 {
-    (void)other;
+    if (this != &other)
+        this->map = other.map;
     return *this;
 }
 
@@ -24,6 +25,7 @@ void BitcoinExchange::getCsvContent(const std::string file)
         throw FileNotExist();
     std::string line;
     std::getline(input, line);
+
     if (line != "date,exchange_rate")
     {
         input.close();
@@ -36,6 +38,8 @@ void BitcoinExchange::getCsvContent(const std::string file)
         std::getline(ss, csv_date, ',');
         float csv_value; 
         ss >> csv_value;
+        if (ss.fail())
+            throw NotValidCsv();
         this->map[csv_date] = csv_value;
     }
     input.close();
@@ -80,46 +84,55 @@ bool BitcoinExchange::checkValidDays(int year, int month, int day)
     return (true);
 }
 
-void BitcoinExchange::startComparing(std::string date, float value)
+void BitcoinExchange::startComparing(const std::string date, float value)
 {
-    std::map<std::string, float>::const_iterator iterator = this->map.lower_bound(date);
-    if (iterator != this->map.end())
+    std::map<std::string, float>::const_iterator it = this->map.upper_bound(date);
+    if (it == this->map.begin())
     {
-        if (date != iterator->first)
-            --iterator;
-        float val = iterator->second;
-        std::cout << iterator->first << " => " <<  value * val << std::endl;
+        std::cerr << "No earlier date found!" << std::endl;
+        return;
     }
-    else
-        std::cout << "Not Found !" << std::endl;
+    --it;
+    std::cout << date << " => " << value << " = " << value * it->second << std::endl;
 }
 
 void BitcoinExchange::checkConetnt(std::string date, float value)
 {
 
-    if (value < 0 || value > 1000)
-        throw InvalidValue();
+    if (value < 0)
+    {
+        std::cerr << "Error: not a positive number." << std::endl;
+        return;
+    }
+
+    if (value > 1000)
+    {
+        std::cerr << "Error: too large a number." << std::endl;
+        return;
+    }
     if (!checkValidDate(date))
-        throw InvalidDate();
+    {
+        std::cerr << "Error: bad input => " << date << std::endl;
+        return;
+    }
 
     int year, month, day;
     std::string temp = date;
-    for (size_t i = 0; i < temp.size(); i++)
-    {
-        if (temp[i] == '-')
-            temp[i] = ' ';
-    }
+    char dash;
     std::stringstream ss(temp);
-    ss >> year >> month >> day;
+    ss >> year >> dash >>  month >> dash >> day;
     if (!checkValidDays(year, month, day))
-        throw InvalidDate();
+    {
+        std::cerr << "Error: bad input => " << date << std::endl;
+        return;
+    }
     startComparing(date, value);
 
 }
 void BitcoinExchange::checkInput(const std::string file)
 {
     std::ifstream s(file.c_str());
-    if (!s.is_open() || s.eof())
+    if (!s.is_open())
         throw FileNotExist();
     std::string line;
     std::getline(s, line);
@@ -134,9 +147,8 @@ void BitcoinExchange::checkInput(const std::string file)
         std::getline(ss, date, '|');
         boost::trim(date);
         ss >> value;
-        boost::trim(date);
         if (ss.fail())
-            throw InvalidValue();
+            std::cerr << "Error: bad input => " << line << std::endl;
         else
             checkConetnt(date, value);
         line.clear();
@@ -159,17 +171,6 @@ const char* BitcoinExchange::WrongContent::what() const throw()
 {
     return "Wrong File Content !";
 }
-
-const char* BitcoinExchange::InvalidValue::what() const throw()
-{
-    return "Invalid Value Detected !";
-}
-
-const char* BitcoinExchange::InvalidDate::what() const throw()
-{
-    return "Invalid Date Detected !";
-}
-
 
 BitcoinExchange::~BitcoinExchange()
 {

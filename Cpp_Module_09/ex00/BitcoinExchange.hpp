@@ -33,14 +33,6 @@ class BitcoinExchange{
             public:
                 const char* what()  const throw();
         };
-        class InvalidValue : public std::exception{
-            public:
-                const char* what()  const throw();
-        };
-        class InvalidDate : public std::exception{
-            public:
-                const char* what()  const throw();
-        };
         class NotValidCsv : public std::exception{
             public:
                 const char* what()  const throw();
