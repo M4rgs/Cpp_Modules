@@ -9,6 +9,7 @@ int main(int ac, char **av)
     BitcoinExchange btc;
     try 
     {
+        btc.getCsvContent("data.csv");
         btc.checkInput(av[1]);
     }
     catch(std::exception &e)

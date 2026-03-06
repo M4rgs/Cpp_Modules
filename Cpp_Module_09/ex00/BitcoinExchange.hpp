@@ -18,8 +18,12 @@ class BitcoinExchange{
         BitcoinExchange &operator=(const BitcoinExchange& other);
         ~BitcoinExchange();
 
+        void getCsvContent(const std::string file);
         void checkInput(const std::string file);
         void checkConetnt(std::string date, float value);
+        bool checkValidDate(std::string date);
+        bool checkValidDays(int year, int month, int day);
+        void startComparing(std::string date, float value);
 
         class FileNotExist : public std::exception{
             public:
@@ -30,6 +34,14 @@ class BitcoinExchange{
                 const char* what()  const throw();
         };
         class InvalidValue : public std::exception{
+            public:
+                const char* what()  const throw();
+        };
+        class InvalidDate : public std::exception{
+            public:
+                const char* what()  const throw();
+        };
+        class NotValidCsv : public std::exception{
             public:
                 const char* what()  const throw();
         };
