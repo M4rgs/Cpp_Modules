@@ -17,6 +17,19 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
     return *this;
 }
 
+void BitcoinExchange::spaceTrim(std::string &date)
+{
+    int start = 0;
+    int end = date.size() - 1;
+
+    while (start <= end && date[start] == ' ')
+        start++;
+
+    while (end >= start && date[end] == ' ')
+        end--;
+
+    date = date.substr(start, end - start + 1);
+}
 
 void BitcoinExchange::getCsvContent(const std::string file)
 {
@@ -71,11 +84,19 @@ bool BitcoinExchange::checkValidDate(std::string date)
 
 bool BitcoinExchange::checkValidDays(int year, int month, int day)
 {
+    time_t now = time(0);
+    struct tm *ltm = localtime(&now);
+    int y = 1900 + ltm->tm_year;
+    if (year > y)
+        return false;
     if (day < 1 || month < 1 || day > 31 || month > 12)
         return false;
     if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
         return (false);
     bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    bool starting_btc = (year < 2009 || (year == 2009 && month > 1) || ((month == 1 && day < 2)));
+    if (starting_btc)
+        return false;
     if (month == 2)
     {
         if ((leap && day > 29) || (!leap && day > 28))
@@ -144,14 +165,21 @@ void BitcoinExchange::checkInput(const std::string file)
     while (std::getline(s, line))
     {
         std::stringstream ss(line);
+
         std::getline(ss, date, '|');
-        boost::trim(date);
-        ss >> value;
-        if (ss.fail())
+        spaceTrim(date);
+
+        std::string valstr;
+        std::getline(ss, valstr);
+        spaceTrim(valstr);
+
+        std::stringstream val(valstr);
+        val >> value;
+
+        if (val.fail() || !val.eof())
             std::cerr << "Error: bad input => " << line << std::endl;
         else
             checkConetnt(date, value);
-        line.clear();
     }
     
 }

@@ -21,7 +21,7 @@ class RPN {
         void execRPN(std::string line);
         long long execOp(long long v1, long long v2, char op);
         bool isOp(char op);
-
         
 };
+
 #endif

@@ -6,6 +6,7 @@
 #include <map>
 #include <fstream>
 #include <sstream>
+#include <ctime>
 #include <boost/algorithm/string.hpp>
 
 
@@ -24,7 +25,7 @@ class BitcoinExchange{
         bool checkValidDate(std::string date);
         bool checkValidDays(int year, int month, int day);
         void startComparing(std::string date, float value);
-
+        void spaceTrim(std::string &date);
         class FileNotExist : public std::exception{
             public:
                 const char* what()  const throw();
