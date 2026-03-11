@@ -16,8 +16,9 @@ class PmergeMe{
     private:
         std::vector<int> vec;
         std::deque<int> deq;
-        bool isOdd; 
-        int oddLeft;
+
+        std::vector<int> sortedVec;
+        std::deque<int> sortedDeq;
         PmergeMe();
     public:
         PmergeMe(const PmergeMe &other);
@@ -26,11 +27,17 @@ class PmergeMe{
         ~PmergeMe();
 
         bool checkNum(std::string line);
-        void insertFollowers(std::vector<int> &mainChain, std::vector<std::pair<int,int> > &sortedPairs);
-        void fordSort(std::vector<int> &seq);
+
+
+        void insertFollowersVec(std::vector<int> &mainChain, std::vector<std::pair<int,int> > &sortedPairs, bool odd, int oddVal);
+        void fordSortVec(std::vector<int> &seq);
         void vecSort();
-        // void deqSort();
-        void printSorted(std::vector<int>mainchain);
+
+        void insertFollowersDeq(std::deque<int> &mainChain, std::deque<std::pair<int,int> > &sortedPairs, bool odd, int oddVal);
+        void fordSortDeq(std::deque<int> &seq);
+        void deqSort();
+
+        void printSorted();
 };
 
 #endif
